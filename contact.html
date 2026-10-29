@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATOCCAZ - Contactez-nous</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES DE COULEURS --- */
+        :root {
+            --white: #FFFFFF;
+            --orange: #FF6B00;
+            --orange-hover: #E65C00;
+            --black: #1A1A1A;
+            --gray-light: #F4F4F4;
+            --gray-text: #555555;
+            --whatsapp: #25D366;
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-light); /* Fond gris clair pour faire ressortir le formulaire blanc */
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION (Identique) --- */
+        nav {
+            background-color: var(--white);
+            padding: 10px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 50px;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            z-index: 1001;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 30px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        /* --- EN-TÊTE DE PAGE --- */
+        .page-header {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 5px solid var(--orange);
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        .page-header h1 span {
+            color: var(--orange);
+        }
+        .page-header p {
+            color: #CCC;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* --- SECTION CONTACT --- */
+        .contact-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 50px;
+        }
+
+        /* --- FORMULAIRE (Gauche) --- */
+        .contact-form-container {
+            flex: 1.2; /* Prend un peu plus de place */
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-form-container h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        .contact-form-container h2 span {
+            color: var(--orange);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            background-color: var(--orange);
+            color: var(--white);
+            border: 2px solid var(--orange);
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--white);
+            color: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        /* --- COORDONNÉES (Droite) --- */
+        .contact-info-container {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-info-container h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .contact-info-container h2 span {
+            color: var(--orange);
+        }
+
+        .info-card {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-left: 4px solid var(--orange);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            color: var(--orange);
+            background-color: #FFF0E5;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .info-text h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-text p, .info-text a {
+            color: var(--gray-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .info-text a:hover {
+            color: var(--orange);
+        }
+
+        /* Bouton WhatsApp direct */
+        .btn-whatsapp-direct {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--whatsapp);
+            color: var(--white);
+            padding: 15px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        .btn-whatsapp-direct:hover {
+            background-color: #1EBE5D;
+        }
+
+        /* --- FOOTER (Identique) --- */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 5px solid var(--orange);
+            margin-top: 80px;
+        }
+        footer p {
+            color: #AAAAAA;
+            margin-bottom: 10px;
+        }
+        footer a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* =========================================
+           RESPONSIVE (MOBILE & TABLETTE)
+           ========================================= */
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.3s ease-in-out;
+            }
+
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 1.1rem;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .logo-img {
+                height: 55px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            /* Ajustements Mobile Contact */
+            .contact-section {
+                flex-direction: column;
+                margin: 40px auto;
+            }
+            .contact-form-container {
+                padding: 25px;
+            }
+            .contact-form-container h2, .contact-info-container h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="https://www.image2url.com/r2/default/images/1793273365525-4be732ac-f8a7-460e-ad9f-9dec89724549.png" alt="Logo MATOCCAZ" class="logo-img">
+            </a>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="catalogue.html">Notre Catalogue</a>
+                <a href="a-propos.html">À Propos</a>
+                <a href="contact.html" style="color: var(--orange);">Contact</a> <!-- Lien actif -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- EN-TÊTE DE PAGE -->
+    <header class="page-header">
+        <h1>Contactez-<span>nous</span></h1>
+        <p>Une question ? Un projet d'achat ? Notre équipe vous répond.</p>
+    </header>
+
+    <!-- SECTION CONTACT -->
+    <main class="contact-section">
+        
+        <!-- Formulaire de contact -->
+        <div class="contact-form-container">
+            <h2>Envoyez-nous un <span>message</span></h2>
+            
+            <!-- Action="mailto:..." permet d'ouvrir le client mail par défaut. 
+                 Pour un envoi pro, on utilisera plus tard Formspree ou EmailJS -->
+            <form action="mailto:sales@matoccaz.com" method="POST" enctype="text/plain">
+                
+                <div class="form-group">
+                    <label for="nom">Votre nom / Entreprise *</label>
+                    <input type="text" id="nom" name="nom" placeholder="Ex: Jean Dupont - BTP Afrique" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Votre email *</label>
+                    <input type="email" id="email" name="email" placeholder="jean.dupont@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telephone">Votre téléphone (optionnel)</label>
+                    <input type="tel" id="telephone" name="telephone" placeholder="+33 6 12 34 56 78">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Votre message *</label>
+                    <textarea id="message" name="message" placeholder="Je suis intéressé par le Tombereau Caterpillar..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Envoyer le message</button>
+            </form>
+        </div>
+
+        <!-- Coordonnées -->
+        <div class="contact-info-container">
+            <h2>Nos <span>coordonnées</span></h2>
+            
+            <!-- Adresse -->
+            <div class="info-card">
+                <div class="info-icon">📍</div>
+                <div class="info-text">
+                    <h3>Adresse</h3>
+                    <p>31 Avenue des Temps Modernes<br>86360 CHASSENEUIL DU POITOU<br>France</p>
+                </div>
+            </div>
+
+            <!-- Téléphone -->
+            <div class="info-card">
+                <div class="info-icon">📞</div>
+                <div class="info-text">
+                    <h3>Téléphone</h3>
+                    <p><a href="tel:+33549133912">+33 5 49 13 39 12</a> (Fixe)<br>
+                    <a href="tel:+33648645987">+33 6 48 64 59 87</a> (Mobile)</p>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="info-card">
+                <div class="info-icon">✉️</div>
+                <div class="info-text">
+                    <h3>Email</h3>
+                    <p><a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a><br>
+                    <a href="mailto:info@matoccaz.com">info@matoccaz.com</a></p>
+                </div>
+            </div>
+
+            <!-- Bouton WhatsApp -->
+            <a href="https://wa.me/33648645987?text=Bonjour,%20je%20vous%20contacte%20depuis%20votre%20site%20web." target="_blank" class="btn-whatsapp-direct">
+                💬 Discuter sur WhatsApp
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>MATOCCAZ</strong> - 31 Avenue des Temps Modernes, 86360 CHASSENEUIL DU POITOU</p>
+        <p>Téléphone : +33 5 49 13 39 12 | Email : <a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></p>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
+    </footer>
+
+    <!-- SCRIPT MENU MOBILE -->
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Fermer le menu mobile quand on clique sur un lien
+        const navLinksMobile = document.querySelectorAll('.nav-links a');
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
