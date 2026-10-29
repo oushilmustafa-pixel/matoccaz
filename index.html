@@ -51,7 +51,6 @@
             height: 50px;
         }
 
-        /* --- LOGO IMAGE --- */
         .logo-link {
             display: flex;
             align-items: center;
@@ -66,7 +65,6 @@
             object-fit: contain;
         }
 
-        /* --- MENU DESKTOP --- */
         .nav-links {
             display: flex;
             align-items: center;
@@ -85,7 +83,6 @@
             color: var(--orange);
         }
 
-        /* --- BOUTON BURGER --- */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -129,14 +126,11 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed; 
-            
             min-height: 100vh; 
-            
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            
             text-align: center;
             border-bottom: 5px solid var(--orange);
             padding: 20px;
@@ -220,100 +214,6 @@
             font-size: 0.95rem;
         }
 
-        /* --- SECTION CARROUSEL (NOUVEAU) --- */
-        .section-carousel {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-            background-color: var(--white);
-        }
-
-        .section-carousel h2 {
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-        }
-        .section-carousel h2 span {
-            color: var(--orange);
-        }
-
-        .carousel-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .carousel-track {
-            display: flex;
-            gap: 40px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 20px;
-            scrollbar-width: none; 
-            -ms-overflow-style: none; 
-        }
-        .carousel-track::-webkit-scrollbar {
-            display: none; 
-        }
-
-        .carousel-item {
-            flex: 0 0 auto;
-            width: 250px;
-            text-align: center;
-        }
-
-        /* LA BULLE RONDE (3x plus grosse) */
-        .bubble {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            border: 5px solid var(--orange);
-            transition: transform 0.3s ease;
-        }
-
-        .bubble:hover {
-            transform: scale(1.05);
-        }
-
-        .bubble img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .carousel-item h3 {
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            font-weight: 800;
-            color: var(--black);
-        }
-
-        .carousel-btn {
-            background-color: #d1d1d1;
-            color: var(--white);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s;
-            flex-shrink: 0;
-        }
-
-        .carousel-btn:hover {
-            background-color: var(--orange);
-        }
-
         /* --- SECTION À PROPOS (PHOTO + TEXTE) --- */
         .section-about {
             background-color: var(--white);
@@ -380,6 +280,125 @@
             font-size: 0.95rem;
         }
 
+        /* --- SECTION CARROUSEL --- */
+        .section-carousel {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .section-carousel h2 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+        .section-carousel h2 span {
+            color: var(--orange);
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 40px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px;
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
+        }
+        .carousel-track::-webkit-scrollbar {
+            display: none; 
+        }
+
+        .carousel-item {
+            flex: 0 0 auto;
+            width: calc(25% - 30px); /* 4 par 4 sur PC */
+            scroll-snap-align: start;
+            text-align: center;
+        }
+
+        .bubble {
+            width: 100%;
+            padding-bottom: 100%;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border: 5px solid var(--orange);
+            transition: transform 0.3s ease;
+        }
+
+        .bubble:hover {
+            transform: scale(1.05);
+        }
+
+        .bubble img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-item h3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .carousel-btn {
+            background-color: #d1d1d1;
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+            flex-shrink: 0;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--orange);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: #d1d1d1;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--black);
+            transform: scale(1.2);
+        }
+
         /* --- SECTION APERÇU CATALOGUE --- */
         .section-preview {
             padding: 80px 20px;
@@ -435,6 +454,82 @@
             margin-top: 40px;
         }
 
+        /* --- SECTION FAQ --- */
+        .section-faq {
+            background-color: var(--gray-light); /* Même fond que l'aperçu catalogue pour l'alternance */
+            padding: 80px 20px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-faq h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+        .section-faq h2 span {
+            color: var(--orange);
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 25px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--black);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .faq-question:hover {
+            color: var(--orange);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--orange);
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: var(--white);
+        }
+
+        .faq-answer p {
+            padding: 0 25px 20px 25px;
+            color: var(--gray-text);
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
         /* --- FOOTER --- */
         footer {
             background-color: var(--black);
@@ -471,7 +566,6 @@
                 align-items: center;
                 padding: 20px 0;
                 box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-                
                 clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
                 transition: clip-path 0.3s ease-in-out;
             }
@@ -495,7 +589,6 @@
                 transform: translateY(-8px) rotate(-45deg);
             }
 
-            /* Ajustements pour mobile */
             .logo-img {
                 height: 55px;
             }
@@ -511,22 +604,16 @@
                 background-attachment: scroll; 
             }
 
-            /* Ajustements Mobile Carrousel */
             .carousel-item {
-                width: 200px; 
-            }
-            .bubble {
-                width: 200px;
-                height: 200px;
+                width: calc(50% - 20px); 
             }
             .carousel-item h3 {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
             .carousel-btn {
-                display: none; /* On cache les flèches sur mobile */
+                display: none; 
             }
 
-            /* Ajustements Mobile pour la section À Propos */
             .about-container {
                 flex-direction: column;
                 gap: 30px;
@@ -536,6 +623,14 @@
                 font-size: 2rem;
                 white-space: normal;
             }
+
+            .section-faq {
+                padding: 60px 20px;
+            }
+            .faq-question {
+                font-size: 1rem;
+                padding: 15px 20px;
+            }
         }
     </style>
 </head>
@@ -544,8 +639,6 @@
     <!-- NAVIGATION -->
     <nav>
         <div class="nav-container">
-            
-            <!-- Le nouveau logo image -->
             <a href="index.html" class="logo-link">
                 <img src="https://www.image2url.com/r2/default/images/1793273365525-4be732ac-f8a7-460e-ad9f-9dec89724549.png" alt="Logo MATOCCAZ" class="logo-img">
             </a>
@@ -597,74 +690,13 @@
         </div> 
     </section>
 
-    <!-- SECTION CARROUSEL CATÉGORIES (NOUVEAU) -->
-    <section class="section-carousel">
-        <h2>Vos matériels <span>favoris</span></h2>
-        
-        <div class="carousel-wrapper">
-            <!-- Flèche Gauche -->
-            <button class="carousel-btn prev" onclick="scrollCarousel(-1)">&#10094;</button>
-
-            <!-- Le conteneur qui défile -->
-            <div class="carousel-track" id="carouselTrack">
-                
-                <!-- Bulle 1 -->
-                <div class="carousel-item">
-                    <div class="bubble">
-                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Pelle">
-                    </div>
-                    <h3>Pelle</h3>
-                </div>
-
-                <!-- Bulle 2 -->
-                <div class="carousel-item">
-                    <div class="bubble">
-                        <img src="https://images.unsplash.com/photo-1579412694468-2d9d5e10d8a1?q=80&w=800&auto=format&fit=crop" alt="Chargeuse">
-                    </div>
-                    <h3>Chargeuse</h3>
-                </div>
-
-                <!-- Bulle 3 -->
-                <div class="carousel-item">
-                    <div class="bubble">
-                        <img src="https://images.unsplash.com/photo-1503785640985-f62e3aeee448?q=80&w=800&auto=format&fit=crop" alt="Grue">
-                    </div>
-                    <h3>Grue</h3>
-                </div>
-
-                <!-- Bulle 4 -->
-                <div class="carousel-item">
-                    <div class="bubble">
-                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop" alt="Tombereau">
-                    </div>
-                    <h3>Tombereau</h3>
-                </div>
-
-                <!-- Bulle 5 -->
-                <div class="carousel-item">
-                    <div class="bubble">
-                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Compacteur">
-                    </div>
-                    <h3>Compacteur</h3>
-                </div>
-
-            </div>
-
-            <!-- Flèche Droite -->
-            <button class="carousel-btn next" onclick="scrollCarousel(1)">&#10095;</button>
-        </div>
-    </section>
-
-    <!-- NOUVELLE SECTION À PROPOS (PHOTO + TEXTE) -->
+    <!-- SECTION À PROPOS (PHOTO + TEXTE) -->
     <section class="section-about">
         <div class="about-container">
-            
-            <!-- Colonne Image -->
             <div class="about-image">
                 <a href="https://ibb.co/DfxkHqJ7"><img src="https://i.ibb.co/XxhprwQz/unnamed-1.webp" alt="unnamed-1" border="0"></a>
             </div>
 
-            <!-- Colonne Texte -->
             <div class="about-text">
                 <h2>L'expertise <span>MATOCCAZ</span></h2>
                 <div>
@@ -680,16 +712,38 @@
 
                 <a href="a-propos.html" class="btn" style="align-self: flex-start; margin-top: 0;">En savoir plus sur nous</a>
             </div>
-
         </div>
     </section>
 
-    <!-- NOUVELLE SECTION APERÇU CATALOGUE -->
+    <!-- SECTION CARROUSEL CATÉGORIES -->
+    <section class="section-carousel">
+        <h2>Vos matériels <span>favoris</span></h2>
+        
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-item"><div class="bubble"><img src="https://i.ibb.co/dsZbp69r/Gemini-Generated-Image-5xv4yu5xv4yu5xv4.png" alt="Bulldozer"></div><h3>Bulldozer</h3></div>
+                <div class="carousel-item"><div class="bubble"><img src="https://i.ibb.co/KxqGSgVY/Gemini-Generated-Image-u0iij9u0iij9u0ii.png" alt="Tombereau"></div><h3>Tombereau</h3></div>
+                <div class="carousel-item"><div class="bubble"><img src="https://i.ibb.co/1C7tkLf/Gemini-Generated-Image-jwqb9mjwqb9mjwqb-1.png" alt="Tractopelle"></div><h3>Tractopelle</h3></div>
+                <div class="carousel-item"><div class="bubble"><img src="https://i.ibb.co/Q3Z86NXq/Gemini-Generated-Image-pujse0pujse0pujs.png" alt="Niveleuse"></div><h3>Niveleuse</h3></div>
+                <div class="carousel-item"><div class="bubble"><img src="https://i.ibb.co/FqH6jy5W/Gemini-Generated-Image-gn6knogn6knogn6k.png" alt="Chariot télescopique"></div><h3>Chariot télescopique</h3></div>
+                <div class="carousel-item"><div class="bubble"><img src="https://i.ibb.co/wh82Gkbn/Gemini-Generated-Image-gadvtggadvtggadv.png" alt="Compacteur"></div><h3>Compacteur</h3></div>
+                <div class="carousel-item"><div class="bubble"><img src="https://i.ibb.co/YGH6nbW/Gemini-Generated-Image-g2di0kg2di0kg2di.png" alt="Chargeuse"></div><h3>Chargeuse</h3></div>
+                <div class="carousel-item"><div class="bubble"><img src="https://i.ibb.co/FkhR9Sg9/Sans-titre-1.png" alt="Scraper"></div><h3>Scraper</h3></div>
+            </div>
+
+            <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <!-- SECTION APERÇU CATALOGUE -->
     <section class="section-preview">
         <h2>Nos dernières <span>arrivées</span></h2>
         
         <div class="grid">
-            <!-- Machine 1 -->
             <div class="preview-card">
                 <img src="https://i.ibb.co/BH0jQWQT/unnamed.webp" alt="Concasseur Mobile">
                 <div class="preview-content">
@@ -698,7 +752,6 @@
                 </div>
             </div>
             
-            <!-- Machine 2 -->
             <div class="preview-card">
                 <img src="https://images.unsplash.com/photo-1503785640985-f62e3aeee448?q=80&w=800&auto=format&fit=crop" alt="Grue Mobile">
                 <div class="preview-content">
@@ -707,7 +760,6 @@
                 </div>
             </div>
             
-            <!-- Machine 3 -->
             <div class="preview-card">
                 <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Pelle Hydraulique">
                 <div class="preview-content">
@@ -722,6 +774,53 @@
         </div>
     </section>
 
+    <!-- SECTION FAQ (AVANT LE FOOTER) -->
+    <section class="section-faq">
+        <div class="faq-container">
+            <h2>Foire Aux <span>Questions</span></h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    Livrez-vous à l'international ?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Oui, c'est notre spécialité. Nous livrons régulièrement en Europe, en Afrique et au Moyen-Orient. Nous nous occupons de toute la logistique (transport maritime, routier) et des formalités douanières.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Vos machines sont-elles garanties ?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Nos machines d'occasion sont rigoureusement inspectées avant la vente. Nous vous fournissons un rapport détaillé de leur état. De plus, nous restons en contact avec vous après la livraison pour vous accompagner.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Quels sont les moyens de paiement acceptés ?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Nous sécurisons toutes nos transactions internationales. Nous acceptons les virements bancaires (SWIFT) et pouvons utiliser des lettres de crédit pour garantir la sécurité de l'achat.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Puis-je venir voir la machine avant d'acheter ?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolument. Nos machines sont stockées sur notre site en France. Nous vous accueillons avec plaisir pour que vous puissiez inspecter le matériel, ou nous pouvons organiser une visite vidéo en direct si vous êtes à l'étranger.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
         <p><strong>MATOCCAZ</strong> - 31 Avenue des Temps Modernes, 86360 CHASSENEUIL DU POITOU</p>
@@ -729,7 +828,7 @@
         <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
     </footer>
 
-    <!-- LE SCRIPT POUR LE MENU MOBILE -->
+    <!-- SCRIPT MENU MOBILE -->
     <script>
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
@@ -740,16 +839,86 @@
         });
     </script>
 
-    <!-- SCRIPT CARROUSEL -->
+    <!-- SCRIPT CARROUSEL & PAGINATION -->
     <script>
-        function scrollCarousel(direction) {
-            const track = document.getElementById('carouselTrack');
-            const scrollAmount = 290; 
+        const track = document.getElementById('carouselTrack');
+        const dotsContainer = document.getElementById('carouselDots');
+        
+        function getItemsPerView() {
+            return window.innerWidth <= 900 ? 2 : 4;
+        }
+
+        function generateDots() {
+            dotsContainer.innerHTML = '';
+            const itemsPerView = getItemsPerView();
+            const totalItems = 8;
+            const totalPages = Math.ceil(totalItems / itemsPerView);
+
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function goToSlide(pageIndex) {
+            const itemsPerView = getItemsPerView();
+            const itemWidth = track.children[0].offsetWidth + 40; 
+            const scrollAmount = itemWidth * itemsPerView * pageIndex;
+            
+            track.scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        function moveCarousel(direction) {
+            const itemsPerView = getItemsPerView();
+            const itemWidth = track.children[0].offsetWidth + 40;
+            const scrollAmount = itemWidth * itemsPerView;
+            
             track.scrollBy({
                 left: direction * scrollAmount,
                 behavior: 'smooth'
             });
         }
+
+        track.addEventListener('scroll', () => {
+            const itemsPerView = getItemsPerView();
+            const itemWidth = track.children[0].offsetWidth + 40;
+            const totalScroll = track.scrollLeft;
+            const pageIndex = Math.round(totalScroll / (itemWidth * itemsPerView));
+            
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === pageIndex);
+            });
+        });
+
+        generateDots();
+        
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                generateDots();
+                goToSlide(0);
+            }, 250);
+        });
+    </script>
+
+    <!-- SCRIPT FAQ ACCORDÉON -->
+    <script>
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
     </script>
 
 </body>
