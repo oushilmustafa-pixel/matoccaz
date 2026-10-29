@@ -323,22 +323,86 @@
             background-color: #1EBE5D;
         }
 
-        /* --- FOOTER --- */
+        /* --- FOOTER (Style catalogue) --- */
         footer {
             background-color: var(--black);
             color: var(--white);
-            padding: 40px 20px;
-            text-align: center;
+            padding: 50px 20px 20px 20px; 
             border-top: 5px solid var(--orange);
         }
-        footer p {
-            color: #AAAAAA;
-            margin-bottom: 10px;
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 20px; 
         }
-        footer a {
+
+        .footer-col h3 {
             color: var(--orange);
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .footer-links, .footer-contact {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-links li, .footer-contact li {
+            height: 35px; 
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 1rem;
+            color: #AAAAAA;
+        }
+
+        .footer-links a, .footer-contact a {
+            color: #AAAAAA;
             text-decoration: none;
-            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover, .footer-contact a:hover {
+            color: var(--white);
+        }
+
+        .footer-contact li.address {
+            height: auto;
+            align-items: flex-start;
+            line-height: 1.5;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 40px;
+        }
+        .footer-legal a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-legal a:hover {
+            color: var(--white);
         }
 
         /* =========================================
@@ -413,6 +477,35 @@
                 bottom: 20px;
                 right: 20px;
                 font-size: 30px;
+            }
+
+            /* --- FOOTER MOBILE --- */
+            .footer-container {
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+
+            .footer-col h3 {
+                font-size: 0.95rem;
+                margin-bottom: 15px;
+            }
+
+            .footer-links li, .footer-contact li {
+                font-size: 0.8rem;
+                height: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center; 
+                gap: 15px;
+            }
+
+            .footer-legal {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+                width: 100%;
             }
         }
     </style>
@@ -502,11 +595,39 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (Style catalogue) -->
     <footer>
-        <p><strong>MATOCCAZ</strong> - 31 Avenue des Temps Modernes, 86360 CHASSENEUIL DU POITOU</p>
-        <p>Téléphone : +33 5 49 13 39 12 | Email : <a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></p>
-        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
+        <div class="footer-container">
+            <!-- Colonne 1 : Navigation -->
+            <div class="footer-col">
+                <h3>NAVIGATION</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="catalogue.html">Notre Catalogue</a></li>
+                    <li><a href="a-propos.html">À Propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonne 2 : Contact -->
+            <div class="footer-col">
+                <h3>CONTACT</h3>
+                <ul class="footer-contact">
+                    <li class="address">31 Avenue des Temps Modernes<br>86360 CHASSENEUIL DU POITOU</li>
+                    <li><a href="tel:+33648645987">+33 6 48 64 59 87</a></li>
+                    <li><a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bas du footer -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 MATOCCAZ. Tous droits réservés.</p>
+            <div class="footer-legal">
+                <a href="#">Mentions légales</a>
+                <a href="#">Politique de confidentialité</a>
+            </div>
+        </div>
     </footer>
 
     <!-- SCRIPT MENU MOBILE -->
