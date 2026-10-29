@@ -48,7 +48,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
-	    height: 50px; /* Ajoutez une hauteur fixe pour la barre de nav */
+            height: 50px;
         }
 
         /* --- LOGO IMAGE --- */
@@ -60,10 +60,10 @@
         }
 
         .logo-img {
-            height: 70px; /* Taille du logo sur PC */
+            height: 70px;
             width: auto;
             display: block;
-            object-fit: contain; /* Évite la déformation */
+            object-fit: contain;
         }
 
         /* --- MENU DESKTOP --- */
@@ -220,6 +220,128 @@
             font-size: 0.95rem;
         }
 
+        /* --- SECTION À PROPOS (PHOTO + TEXTE) --- */
+        .section-about {
+            background-color: var(--white);
+            padding: 80px 20px;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: stretch; /* Force les colonnes à faire la même hauteur */
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            display: flex; /* Aide à caler l'image */
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto; /* L'image garde ses proportions */
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-bottom: 5px solid var(--orange);
+        }
+
+        .about-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Pousse le bouton tout en bas */
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem; /* Taille ajustée */
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            white-space: nowrap; /* Force sur une ligne */
+            line-height: 1; /* Aligne parfaitement le haut du texte avec l'image */
+
+        }
+
+        .about-text h2 span {
+            color: var(--orange);
+        }
+
+        .about-text p {
+            color: var(--gray-text);
+            margin-bottom: 15px; /* Espace réduit */
+            font-size: 0.95rem; /* Texte plus petit */
+            line-height: 1.5; /* Interligne resserré */
+        }
+
+        .about-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .about-list li {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--black);
+            font-size: 0.95rem;
+        }
+
+        /* --- SECTION APERÇU CATALOGUE --- */
+        .section-preview {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--gray-light);
+        }
+        
+        .section-preview h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+        .section-preview h2 span {
+            color: var(--orange);
+        }
+
+        .preview-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        .preview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .preview-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #ddd;
+        }
+        .preview-content {
+            padding: 20px;
+            text-align: center;
+            border-top: 3px solid var(--orange);
+        }
+        .preview-content h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .preview-content p {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        .preview-btn-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
         /* --- FOOTER --- */
         footer {
             background-color: var(--black);
@@ -282,7 +404,7 @@
 
             /* Ajustements pour mobile */
             .logo-img {
-                height: 55px; /* Logo plus petit sur mobile */
+                height: 55px;
             }
 
             .hero h1 {
@@ -294,6 +416,17 @@
             }
             .hero {
                 background-attachment: scroll; 
+            }
+
+            /* Ajustements Mobile pour les nouvelles sections */
+            .about-container {
+                flex-direction: column;
+                gap: 30px;
+                align-items: stretch; /* Garde l'alignement sur mobile */
+            }
+            .about-text h2 {
+                font-size: 2rem;
+                white-space: normal; /* Autorise le retour à la ligne sur mobile */
             }
         }
     </style>
@@ -334,7 +467,7 @@
     <!-- SECTION NOIRE -->
     <section class="section-black">
         <h2>Notre <span>Expertise</span></h2>
-        <p>Sur le terrain depuis 12 ans, nous maîtrisons tous les processus de l'import et de l'export, Nous vous accompagnons depuis l'achat jusqu'a la livraison de votre matériel.</p>
+        <p>Sur le terrain depuis 12 ans, nous maîtrisons tous les processus de l'import et de l'export. Nous vous accompagnons depuis l'achat jusqu'à la livraison de votre matériel.</p>
     </section>
 
     <!-- SECTION SERVICES -->
@@ -353,7 +486,75 @@
                 <h3>Import / Export</h3>
                 <p>Une maîtrise totale des procédures douanières et logistiques.</p>
             </div>
+        </div> 
+    </section>
+
+    <!-- NOUVELLE SECTION À PROPOS (PHOTO + TEXTE) -->
+    <section class="section-about">
+        <div class="about-container">
+            
+            <!-- Colonne Image -->
+            <div class="about-image">
+                <!-- Remplacez cette image par une de vos vraies photos (ex: votre équipe, un chargement, etc.) -->
+                <a href="https://ibb.co/DfxkHqJ7"><img src="https://i.ibb.co/XxhprwQz/unnamed-1.webp" alt="unnamed-1" border="0"></a>
             </div>
+
+            <!-- Colonne Texte -->
+            <div class="about-text">
+                <h2>L'expertise <span>MATOCCAZ</span></h2>
+                <div> <!-- On groupe le texte pour le pousser vers le haut -->
+                    <p>Depuis plus de 12 ans, nous accompagnons les professionnels du BTP dans l'achat et la vente de matériels d'occasion.</p>
+                    <p>Notre force ? Une connaissance parfaite du terrain, des machines, et une logistique maîtrisée de A à Z. Que vous soyez en France, en Afrique ou au Moyen-Orient, nous gérons le transport et les formalités douanières pour vous.</p>
+                    
+                    <ul class="about-list">
+                        <li>✔️ Machines rigoureusement sélectionnées</li>
+                        <li>✔️ Livraison sécurisée dans le monde entier</li>
+                        <li>✔️ Accompagnement personnalisé</li>
+                    </ul>
+                </div>
+
+                <a href="a-propos.html" class="btn" style="align-self: flex-start; margin-top: 0;">En savoir plus sur nous</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NOUVELLE SECTION APERÇU CATALOGUE -->
+    <section class="section-preview">
+        <h2>Nos dernières <span>arrivées</span></h2>
+        
+        <div class="grid">
+            <!-- Machine 1 -->
+            <div class="preview-card">
+                <img src="https://i.ibb.co/BH0jQWQT/unnamed.webp" alt="Concasseur Mobile">
+                <div class="preview-content">
+                    <h3>Concasseur Kleemann</h3>
+                    <p>Année 2021 - 500h</p>
+                </div>
+            </div>
+            
+            <!-- Machine 2 -->
+            <div class="preview-card">
+                <img src="https://images.unsplash.com/photo-1503785640985-f62e3aeee448?q=80&w=800&auto=format&fit=crop" alt="Grue Mobile">
+                <div class="preview-content">
+                    <h3>Grue Liebherr LTM</h3>
+                    <p>Année 2018 - 100T</p>
+                </div>
+            </div>
+            
+            <!-- Machine 3 -->
+            <div class="preview-card">
+                <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Pelle Hydraulique">
+                <div class="preview-content">
+                    <h3>Pelle Caterpillar 320</h3>
+                    <p>Année 2020 - 3200h</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-btn-container">
+            <a href="catalogue.html" class="btn">Voir tout le catalogue</a>
+        </div>
     </section>
 
     <!-- FOOTER -->
@@ -376,4 +577,3 @@
 
 </body>
 </html>
-expert
