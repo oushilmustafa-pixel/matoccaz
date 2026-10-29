@@ -650,8 +650,7 @@
             </div>
 
             <div class="nav-links" id="nav-links">
-                <a href="index.html">Accueil</a>
-                <a href="catalogue.html">Matériels</a>
+                <a href="catalogue.html">Notre Catalogue</a>
                 <a href="a-propos.html">À Propos</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -920,6 +919,17 @@
             question.addEventListener('click', () => {
                 const faqItem = question.parentElement;
                 faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+
+ <script>
+        // Fermer le menu mobile quand on clique sur un lien
+        const navLinksMobile = document.querySelectorAll('.nav-links a');
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navLinks.classList.remove('active');
             });
         });
     </script>
