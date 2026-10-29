@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATOCCAZ - Matériels BTP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES DE COULEURS --- */
+        :root {
+            --white: #FFFFFF;
+            --orange: #FF6B00;
+            --orange-hover: #E65C00;
+            --black: #1A1A1A;
+            --gray-light: #F4F4F4;
+            --gray-text: #555555;
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: var(--white);
+            padding: 5px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--black);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: var(--orange);
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 30px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        /* --- BOUTON ORANGE --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--orange);
+        }
+        .btn:hover {
+            background-color: var(--white);
+            color: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        /* --- HERO SECTION (MODIFIÉ AVEC L'IMAGE) --- */
+        .hero {
+            /* L'image de fond avec un dégradé noir pour la lisibilité */
+            background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.8)), url('https://i.ibb.co/BH0jQWQT/unnamed.webp');
+            background-size: cover; /* L'image couvre toute la zone */
+            background-position: center; /* L'image est centrée */
+            padding: 100px 20px; /* Un peu plus de padding pour profiter de l'image */
+            text-align: center;
+            border-bottom: 5px solid var(--orange);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--white); /* Le texte passe en blanc pour ressortir sur la photo */
+        }
+        .hero h1 span {
+            color: var(--orange);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #E0E0E0; /* Gris très clair pour la lisibilité sur fond sombre */
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* --- SECTION NOIRE --- */
+        .section-black {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .section-black h2 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .section-black h2 span {
+            color: var(--orange);
+        }
+        .section-black p {
+            color: #CCCCCC;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* --- SECTION SERVICES --- */
+        .services {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-left: 4px solid var(--orange);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .card p {
+            color: var(--gray-text);
+            font-size: 0.95rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 5px solid var(--orange);
+        }
+        footer p {
+            color: #AAAAAA;
+            margin-bottom: 10px;
+        }
+        footer a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">MAT<span>OCCAZ</span></a>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="catalogue.html">Matériels</a>
+                <a href="a-propos.html">À Propos</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Avec la photo en fond) -->
+    <section class="hero">
+        <h1>Achat et Vente de <br><span>Matériels BTP</span></h1>
+        <p>Spécialiste des matériels de TP, levage et carrière. Livraison en Afrique, au Moyen-Orient et en Europe.</p>
+        <a href="catalogue.html" class="btn">Découvrir le catalogue</a>
+    </section>
+
+    <!-- SECTION NOIRE -->
+    <section class="section-black">
+        <h2>Notre <span>Expertise</span></h2>
+        <p>Forte de notre expérience, nous maîtrisons tous les processus de l'import et de l'export. Nous vous accompagnons dans vos transactions internationales en toute sécurité.</p>
+    </section>
+
+    <!-- SECTION SERVICES -->
+    <section class="services">
+        <h2>Pourquoi nous choisir ?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Ouverture Internationale</h3>
+                <p>Une forte présence en Afrique, Moyen-Orient et Europe pour répondre à tous vos besoins.</p>
+            </div>
+            <div class="card">
+                <h3>Grande Réactivité</h3>
+                <p>Nous nous adaptons aux marchés très divers et complexes avec rapidité.</p>
+            </div>
+            <div class="card">
+                <h3>Import / Export</h3>
+                <p>Une maîtrise totale des procédures douanières et logistiques.</p>
+            </div>
+            <div class="card">
+                <h3>Paiements Sécurisés</h3>
+                <p>Nous gérons les moyens de paiement internationaux en toute transparence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>MATOCCAZ</strong> - 31 Avenue des Temps Modernes, 86360 CHASSENEUIL DU POITOU</p>
+        <p>Téléphone : +33 5 49 13 39 12 | Email : <a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></p>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
