@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATOCCAZ - Notre Catalogue</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES DE COULEURS --- */
+        :root {
+            --white: #FFFFFF;
+            --orange: #FF6B00;
+            --orange-hover: #E65C00;
+            --black: #1A1A1A;
+            --gray-light: #F4F4F4;
+            --gray-text: #555555;
+            --whatsapp: #25D366;
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-light); /* Fond gris clair pour faire ressortir les cartes */
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION (Identique à l'accueil) --- */
+        nav {
+            background-color: var(--white);
+            padding: 10px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 50px;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            z-index: 1001;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 30px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--orange);
+        }
+        .btn:hover {
+            background-color: var(--white);
+            color: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        /* --- EN-TÊTE DE PAGE --- */
+        .page-header {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 5px solid var(--orange);
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        .page-header h1 span {
+            color: var(--orange);
+        }
+        .page-header p {
+            color: #CCC;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* --- BARRE DE FILTRES (Design simple) --- */
+        .filters {
+            max-width: 1200px;
+            margin: 40px auto 20px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-btn {
+            background-color: var(--white);
+            color: var(--black);
+            border: 2px solid var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--orange);
+            color: var(--white);
+            border-color: var(--orange);
+        }
+
+        /* --- GRILLE CATALOGUE --- */
+        .catalogue-container {
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+        }
+
+        .grid-machines {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .machine-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .machine-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .machine-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: #ddd;
+        }
+
+        .machine-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .machine-category {
+            color: var(--orange);
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .machine-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .machine-specs {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .machine-specs li {
+            margin-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .machine-specs li strong {
+            color: var(--black);
+        }
+
+        .machine-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--whatsapp);
+            color: var(--white);
+            padding: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .btn-whatsapp:hover {
+            background-color: #1EBE5D;
+        }
+
+        .btn-details {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            border: 2px solid var(--black);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        .btn-details:hover {
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        /* --- BOUTON WHATSAPP FLOTTANT --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: var(--whatsapp);
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #1EBE5D;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 5px solid var(--orange);
+        }
+        footer p {
+            color: #AAAAAA;
+            margin-bottom: 10px;
+        }
+        footer a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.3s ease-in-out;
+            }
+
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 1.1rem;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .logo-img {
+                height: 55px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            /* Ajustement du bouton flottant sur mobile */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="https://www.image2url.com/r2/default/images/1793273365525-4be732ac-f8a7-460e-ad9f-9dec89724549.png" alt="Logo MATOCCAZ" class="logo-img">
+            </a>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="catalogue.html" style="color: var(--orange);">Matériels</a> <!-- Lien actif -->
+                <a href="a-propos.html">À Propos</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- EN-TÊTE DE PAGE -->
+    <header class="page-header">
+        <h1>Notre <span>Catalogue</span></h1>
+        <p>Découvrez nos machines disponibles à la vente</p>
+    </header>
+
+    <!-- BARRE DE FILTRES (Design simple) -->
+    <div class="filters">
+        <button class="filter-btn active">Tout voir</button>
+        <button class="filter-btn">Pelles</button>
+        <button class="filter-btn">Chargeuses</button>
+        <button class="filter-btn">Tombereaux</button>
+        <button class="filter-btn">Compacteurs</button>
+    </div>
+
+    <!-- SECTION CATALOGUE -->
+    <main class="catalogue-container">
+        <div class="grid-machines">
+            
+            <!-- MACHINE 1 (Exemple avec le Tombereau de votre site) -->
+            <article class="machine-card">
+                <img src="https://i.ibb.co/BH0jQWQT/unnamed.webp" alt="Tombereau" class="machine-image">
+                <div class="machine-content">
+                    <span class="machine-category">Tombereaux</span>
+                    <h2 class="machine-title">Tombereau Articulé Caterpillar D400D</h2>
+                    <ul class="machine-specs">
+                        <li><strong>Année :</strong> 2000</li>
+                        <li><strong>Heures :</strong> 13 000 h</li>
+                        <li><strong>État :</strong> Bon état</li>
+                        <li><strong>Pays :</strong> France</li>
+                    </ul>
+                    <div class="machine-actions">
+                        <!-- Le lien WhatsApp avec le numéro du flyer et le nom de la machine pré-rempli -->
+                        <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20le%20Tombereau%20Articulé%20Caterpillar%20D400D" target="_blank" class="btn-whatsapp">
+                            💬 Contacter sur WhatsApp
+                        </a>
+                        <a href="#" class="btn-details">Voir les détails</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- MACHINE 2 (Exemple avec le Manitou de votre site) -->
+            <article class="machine-card">
+                <img src="https://images.unsplash.com/photo-1503785640985-f62e3aeee448?q=80&w=800&auto=format&fit=crop" alt="Chariot Télescopique" class="machine-image">
+                <div class="machine-content">
+                    <span class="machine-category">Chariots télescopiques</span>
+                    <h2 class="machine-title">Télescopique Manitou MT1840 Easy 75 S</h2>
+                    <ul class="machine-specs">
+                        <li><strong>Année :</strong> 2018</li>
+                        <li><strong>Heures :</strong> 2 385 h</li>
+                        <li><strong>État :</strong> Très bon état</li>
+                        <li><strong>Pays :</strong> Belgique</li>
+                    </ul>
+                    <div class="machine-actions">
+                        <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20le%20Manitou%20MT1840%20Easy%2075%20S" target="_blank" class="btn-whatsapp">
+                            💬 Contacter sur WhatsApp
+                        </a>
+                        <a href="#" class="btn-details">Voir les détails</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- MACHINE 3 (Exemple avec la Mini-Pelle de votre site) -->
+            <article class="machine-card">
+                <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Mini-Pelle" class="machine-image">
+                <div class="machine-content">
+                    <span class="machine-category">Pelles</span>
+                    <h2 class="machine-title">Mini-Pelle sur Chenilles Komatsu PC26MR-5</h2>
+                    <ul class="machine-specs">
+                        <li><strong>Année :</strong> 2022</li>
+                        <li><strong>Heures :</strong> 968 h</li>
+                        <li><strong>État :</strong> Excellent</li>
+                        <li><strong>Pays :</strong> France</li>
+                    </ul>
+                    <div class="machine-actions">
+                        <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20la%20Mini-Pelle%20Komatsu%20PC26MR-5" target="_blank" class="btn-whatsapp">
+                            💬 Contacter sur WhatsApp
+                        </a>
+                        <a href="#" class="btn-details">Voir les détails</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- MACHINE 4 (Exemple) -->
+            <article class="machine-card">
+                <img src="https://images.unsplash.com/photo-1579412694468-2d9d5e10d8a1?q=80&w=800&auto=format&fit=crop" alt="Chargeuse" class="machine-image">
+                <div class="machine-content">
+                    <span class="machine-category">Chargeuses</span>
+                    <h2 class="machine-title">Chargeuse sur Pneus Volvo L120H</h2>
+                    <ul class="machine-specs">
+                        <li><strong>Année :</strong> 2019</li>
+                        <li><strong>Heures :</strong> 4 200 h</li>
+                        <li><strong>État :</strong> Bon état</li>
+                        <li><strong>Pays :</strong> Sénégal</li>
+                    </ul>
+                    <div class="machine-actions">
+                        <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20la%20Chargeuse%20Volvo%20L120H" target="_blank" class="btn-whatsapp">
+                            💬 Contacter sur WhatsApp
+                        </a>
+                        <a href="#" class="btn-details">Voir les détails</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- MACHINE 5 (Exemple) -->
+            <article class="machine-card">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop" alt="Compacteur" class="machine-image">
+                <div class="machine-content">
+                    <span class="machine-category">Compacteurs</span>
+                    <h2 class="machine-title">Compacteur Tandem Bomag BW 154</h2>
+                    <ul class="machine-specs">
+                        <li><strong>Année :</strong> 2017</li>
+                        <li><strong>Heures :</strong> 3 500 h</li>
+                        <li><strong>État :</strong> Bon état</li>
+                        <li><strong>Pays :</strong> France</li>
+                    </ul>
+                    <div class="machine-actions">
+                        <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20le%20Compacteur%20Bomag%20BW%20154" target="_blank" class="btn-whatsapp">
+                            💬 Contacter sur WhatsApp
+                        </a>
+                        <a href="#" class="btn-details">Voir les détails</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- MACHINE 6 (Exemple) -->
+            <article class="machine-card">
+                <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Pelle" class="machine-image">
+                <div class="machine-content">
+                    <span class="machine-category">Pelles</span>
+                    <h2 class="machine-title">Pelle Hydraulique Caterpillar 320</h2>
+                    <ul class="machine-specs">
+                        <li><strong>Année :</strong> 2020</li>
+                        <li><strong>Heures :</strong> 3 200 h</li>
+                        <li><strong>État :</strong> Très bon état</li>
+                        <li><strong>Pays :</strong> France</li>
+                    </ul>
+                    <div class="machine-actions">
+                        <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20la%20Pelle%20Caterpillar%20320" target="_blank" class="btn-whatsapp">
+                            💬 Contacter sur WhatsApp
+                        </a>
+                        <a href="#" class="btn-details">Voir les détails</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- BOUTON WHATSAPP FLOTTANT -->
+    <a href="https://wa.me/33648645987?text=Bonjour,%20je%20souhaite%20avoir%20plus%20d'informations" class="whatsapp-float" target="_blank">
+        💬
+    </a>
+
+    <!-- FOOTER (Identique à l'accueil) -->
+    <footer>
+        <p><strong>MATOCCAZ</strong> - 31 Avenue des Temps Modernes, 86360 CHASSENEUIL DU POITOU</p>
+        <p>Téléphone : +33 5 49 13 39 12 | Email : <a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></p>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
+    </footer>
+
+    <!-- SCRIPT MENU MOBILE -->
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
