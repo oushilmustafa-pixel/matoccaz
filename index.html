@@ -34,7 +34,7 @@
         /* --- NAVIGATION --- */
         nav {
             background-color: var(--white);
-            padding: 5px 0;
+            padding: 10px 0;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
@@ -57,9 +57,16 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
+            z-index: 1001; /* Pour rester au-dessus du menu mobile */
         }
         .logo span {
             color: var(--orange);
+        }
+
+        /* Le conteneur des liens */
+        .nav-links {
+            display: flex;
+            align-items: center;
         }
 
         .nav-links a {
@@ -73,6 +80,23 @@
         }
         .nav-links a:hover {
             color: var(--orange);
+        }
+
+        /* --- BOUTON BURGER (Caché sur PC) --- */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--black);
+            transition: all 0.3s ease;
         }
 
         /* --- BOUTON ORANGE --- */
@@ -96,13 +120,12 @@
             box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
         }
 
-        /* --- HERO SECTION (MODIFIÉ AVEC L'IMAGE) --- */
+        /* --- HERO SECTION --- */
         .hero {
-            /* L'image de fond avec un dégradé noir pour la lisibilité */
             background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.8)), url('https://i.ibb.co/BH0jQWQT/unnamed.webp');
-            background-size: cover; /* L'image couvre toute la zone */
-            background-position: center; /* L'image est centrée */
-            padding: 100px 20px; /* Un peu plus de padding pour profiter de l'image */
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
             text-align: center;
             border-bottom: 5px solid var(--orange);
         }
@@ -113,14 +136,14 @@
             text-transform: uppercase;
             margin-bottom: 20px;
             line-height: 1.1;
-            color: var(--white); /* Le texte passe en blanc pour ressortir sur la photo */
+            color: var(--white);
         }
         .hero h1 span {
             color: var(--orange);
         }
         .hero p {
             font-size: 1.2rem;
-            color: #E0E0E0; /* Gris très clair pour la lisibilité sur fond sombre */
+            color: #E0E0E0;
             max-width: 700px;
             margin: 0 auto 40px auto;
         }
@@ -202,6 +225,62 @@
             text-decoration: none;
             font-weight: bold;
         }
+
+        /* =========================================
+           RESPONSIVE (MOBILE & TABLETTE)
+           ========================================= */
+        @media (max-width: 900px) {
+            /* On affiche le bouton burger */
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* On transforme le menu en panneau déroulant */
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                
+                /* Caché par défaut avec l'effet de glissement */
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.3s ease-in-out;
+            }
+
+            /* Quand on clique sur le burger, on ajoute la classe "active" en JS */
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 1.1rem;
+            }
+
+            /* Animation du burger en croix (X) quand le menu est ouvert */
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            /* Ajustement du Hero pour mobile */
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero {
+                padding: 80px 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -210,7 +289,16 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">MAT<span>OCCAZ</span></a>
-            <div class="nav-links">
+            
+            <!-- Le bouton Burger (visible que sur mobile) -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Les liens du menu -->
+            <div class="nav-links" id="nav-links">
                 <a href="index.html">Accueil</a>
                 <a href="catalogue.html">Matériels</a>
                 <a href="a-propos.html">À Propos</a>
@@ -219,7 +307,7 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Avec la photo en fond) -->
+    <!-- HERO SECTION -->
     <section class="hero">
         <h1>Achat et Vente de <br><span>Matériels BTP</span></h1>
         <p>Spécialiste des matériels de TP, levage et carrière. Livraison en Afrique, au Moyen-Orient et en Europe.</p>
@@ -261,6 +349,19 @@
         <p>Téléphone : +33 5 49 13 39 12 | Email : <a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></p>
         <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
     </footer>
+
+    <!-- LE SCRIPT POUR LE MENU MOBILE -->
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        // Au clic sur le burger
+        mobileMenu.addEventListener('click', () => {
+            // On ajoute ou retire la classe "active" pour déclencher l'animation CSS
+            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    </script>
 
 </body>
 </html>
