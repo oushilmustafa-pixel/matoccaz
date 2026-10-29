@@ -57,13 +57,12 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
-            z-index: 1001; /* Pour rester au-dessus du menu mobile */
+            z-index: 1001;
         }
         .logo span {
             color: var(--orange);
         }
 
-        /* Le conteneur des liens */
         .nav-links {
             display: flex;
             align-items: center;
@@ -82,7 +81,7 @@
             color: var(--orange);
         }
 
-        /* --- BOUTON BURGER (Caché sur PC) --- */
+        /* --- BOUTON BURGER --- */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -120,14 +119,25 @@
             box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (100VH POUR PRENDRE TOUT L'ÉCRAN) --- */
         .hero {
             background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.8)), url('https://i.ibb.co/BH0jQWQT/unnamed.webp');
             background-size: cover;
             background-position: center;
-            padding: 100px 20px;
+            background-attachment: fixed; /* Optionnel : effet parallaxe sympa sur PC */
+            
+            /* On force la hauteur de l'écran */
+            min-height: 100vh; 
+            
+            /* On utilise Flexbox pour centrer parfaitement le contenu */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
             text-align: center;
             border-bottom: 5px solid var(--orange);
+            padding: 20px;
         }
 
         .hero h1 {
@@ -230,12 +240,10 @@
            RESPONSIVE (MOBILE & TABLETTE)
            ========================================= */
         @media (max-width: 900px) {
-            /* On affiche le bouton burger */
             .menu-toggle {
                 display: flex;
             }
 
-            /* On transforme le menu en panneau déroulant */
             .nav-links {
                 position: absolute;
                 top: 100%;
@@ -247,12 +255,10 @@
                 padding: 20px 0;
                 box-shadow: 0 10px 15px rgba(0,0,0,0.1);
                 
-                /* Caché par défaut avec l'effet de glissement */
                 clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
                 transition: clip-path 0.3s ease-in-out;
             }
 
-            /* Quand on clique sur le burger, on ajoute la classe "active" en JS */
             .nav-links.active {
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
             }
@@ -262,7 +268,6 @@
                 font-size: 1.1rem;
             }
 
-            /* Animation du burger en croix (X) quand le menu est ouvert */
             .menu-toggle.active span:nth-child(1) {
                 transform: translateY(8px) rotate(45deg);
             }
@@ -273,12 +278,17 @@
                 transform: translateY(-8px) rotate(-45deg);
             }
 
-            /* Ajustement du Hero pour mobile */
+            /* Ajustements pour mobile */
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.3rem; /* Titre plus adapté au mobile */
             }
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+            /* On désactive l'effet parallaxe sur mobile qui peut buguer sur iPhone */
             .hero {
-                padding: 80px 20px;
+                background-attachment: scroll; 
             }
         }
     </style>
@@ -290,14 +300,12 @@
         <div class="nav-container">
             <a href="index.html" class="logo">MAT<span>OCCAZ</span></a>
             
-            <!-- Le bouton Burger (visible que sur mobile) -->
             <div class="menu-toggle" id="mobile-menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
 
-            <!-- Les liens du menu -->
             <div class="nav-links" id="nav-links">
                 <a href="index.html">Accueil</a>
                 <a href="catalogue.html">Matériels</a>
@@ -355,9 +363,7 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
 
-        // Au clic sur le burger
         mobileMenu.addEventListener('click', () => {
-            // On ajoute ou retire la classe "active" pour déclencher l'animation CSS
             mobileMenu.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
