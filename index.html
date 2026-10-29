@@ -220,6 +220,100 @@
             font-size: 0.95rem;
         }
 
+        /* --- SECTION CARROUSEL (NOUVEAU) --- */
+        .section-carousel {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .section-carousel h2 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+        .section-carousel h2 span {
+            color: var(--orange);
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 40px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px;
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
+        }
+        .carousel-track::-webkit-scrollbar {
+            display: none; 
+        }
+
+        .carousel-item {
+            flex: 0 0 auto;
+            width: 250px;
+            text-align: center;
+        }
+
+        /* LA BULLE RONDE (3x plus grosse) */
+        .bubble {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border: 5px solid var(--orange);
+            transition: transform 0.3s ease;
+        }
+
+        .bubble:hover {
+            transform: scale(1.05);
+        }
+
+        .bubble img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-item h3 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .carousel-btn {
+            background-color: #d1d1d1;
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+            flex-shrink: 0;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--orange);
+        }
+
         /* --- SECTION À PROPOS (PHOTO + TEXTE) --- */
         .section-about {
             background-color: var(--white);
@@ -230,18 +324,18 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            align-items: stretch; /* Force les colonnes à faire la même hauteur */
+            align-items: stretch;
             gap: 50px;
         }
 
         .about-image {
             flex: 1;
-            display: flex; /* Aide à caler l'image */
+            display: flex;
         }
 
         .about-image img {
             width: 100%;
-            height: auto; /* L'image garde ses proportions */
+            height: auto;
             object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
@@ -252,16 +346,15 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Pousse le bouton tout en bas */
+            justify-content: space-between;
         }
 
         .about-text h2 {
-            font-size: 2.2rem; /* Taille ajustée */
+            font-size: 2.2rem;
             text-transform: uppercase;
             margin-bottom: 15px;
-            white-space: nowrap; /* Force sur une ligne */
-            line-height: 1; /* Aligne parfaitement le haut du texte avec l'image */
-
+            white-space: nowrap;
+            line-height: 1;
         }
 
         .about-text h2 span {
@@ -270,9 +363,9 @@
 
         .about-text p {
             color: var(--gray-text);
-            margin-bottom: 15px; /* Espace réduit */
-            font-size: 0.95rem; /* Texte plus petit */
-            line-height: 1.5; /* Interligne resserré */
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .about-list {
@@ -418,15 +511,30 @@
                 background-attachment: scroll; 
             }
 
-            /* Ajustements Mobile pour les nouvelles sections */
+            /* Ajustements Mobile Carrousel */
+            .carousel-item {
+                width: 200px; 
+            }
+            .bubble {
+                width: 200px;
+                height: 200px;
+            }
+            .carousel-item h3 {
+                font-size: 1.2rem;
+            }
+            .carousel-btn {
+                display: none; /* On cache les flèches sur mobile */
+            }
+
+            /* Ajustements Mobile pour la section À Propos */
             .about-container {
                 flex-direction: column;
                 gap: 30px;
-                align-items: stretch; /* Garde l'alignement sur mobile */
+                align-items: stretch;
             }
             .about-text h2 {
                 font-size: 2rem;
-                white-space: normal; /* Autorise le retour à la ligne sur mobile */
+                white-space: normal;
             }
         }
     </style>
@@ -489,20 +597,77 @@
         </div> 
     </section>
 
+    <!-- SECTION CARROUSEL CATÉGORIES (NOUVEAU) -->
+    <section class="section-carousel">
+        <h2>Vos matériels <span>favoris</span></h2>
+        
+        <div class="carousel-wrapper">
+            <!-- Flèche Gauche -->
+            <button class="carousel-btn prev" onclick="scrollCarousel(-1)">&#10094;</button>
+
+            <!-- Le conteneur qui défile -->
+            <div class="carousel-track" id="carouselTrack">
+                
+                <!-- Bulle 1 -->
+                <div class="carousel-item">
+                    <div class="bubble">
+                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Pelle">
+                    </div>
+                    <h3>Pelle</h3>
+                </div>
+
+                <!-- Bulle 2 -->
+                <div class="carousel-item">
+                    <div class="bubble">
+                        <img src="https://images.unsplash.com/photo-1579412694468-2d9d5e10d8a1?q=80&w=800&auto=format&fit=crop" alt="Chargeuse">
+                    </div>
+                    <h3>Chargeuse</h3>
+                </div>
+
+                <!-- Bulle 3 -->
+                <div class="carousel-item">
+                    <div class="bubble">
+                        <img src="https://images.unsplash.com/photo-1503785640985-f62e3aeee448?q=80&w=800&auto=format&fit=crop" alt="Grue">
+                    </div>
+                    <h3>Grue</h3>
+                </div>
+
+                <!-- Bulle 4 -->
+                <div class="carousel-item">
+                    <div class="bubble">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop" alt="Tombereau">
+                    </div>
+                    <h3>Tombereau</h3>
+                </div>
+
+                <!-- Bulle 5 -->
+                <div class="carousel-item">
+                    <div class="bubble">
+                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Compacteur">
+                    </div>
+                    <h3>Compacteur</h3>
+                </div>
+
+            </div>
+
+            <!-- Flèche Droite -->
+            <button class="carousel-btn next" onclick="scrollCarousel(1)">&#10095;</button>
+        </div>
+    </section>
+
     <!-- NOUVELLE SECTION À PROPOS (PHOTO + TEXTE) -->
     <section class="section-about">
         <div class="about-container">
             
             <!-- Colonne Image -->
             <div class="about-image">
-                <!-- Remplacez cette image par une de vos vraies photos (ex: votre équipe, un chargement, etc.) -->
                 <a href="https://ibb.co/DfxkHqJ7"><img src="https://i.ibb.co/XxhprwQz/unnamed-1.webp" alt="unnamed-1" border="0"></a>
             </div>
 
             <!-- Colonne Texte -->
             <div class="about-text">
                 <h2>L'expertise <span>MATOCCAZ</span></h2>
-                <div> <!-- On groupe le texte pour le pousser vers le haut -->
+                <div>
                     <p>Depuis plus de 12 ans, nous accompagnons les professionnels du BTP dans l'achat et la vente de matériels d'occasion.</p>
                     <p>Notre force ? Une connaissance parfaite du terrain, des machines, et une logistique maîtrisée de A à Z. Que vous soyez en France, en Afrique ou au Moyen-Orient, nous gérons le transport et les formalités douanières pour vous.</p>
                     
@@ -526,28 +691,28 @@
         <div class="grid">
             <!-- Machine 1 -->
             <div class="preview-card">
-                <a href="https://ibb.co/2362B5Yg"><img src="https://i.ibb.co/qYnGwxFk/27779-5.jpg" alt="27779-5" border="0"></a>
+                <img src="https://i.ibb.co/BH0jQWQT/unnamed.webp" alt="Concasseur Mobile">
                 <div class="preview-content">
-                    <h3>Tombereau articulé CATERPILLAR D400D</h3>
-                    <p>Année 2000 - 13 000h</p>
+                    <h3>Concasseur Kleemann</h3>
+                    <p>Année 2021 - 500h</p>
                 </div>
             </div>
             
             <!-- Machine 2 -->
             <div class="preview-card">
-                <a href="https://ibb.co/wZWtTTt3"><img src="https://i.ibb.co/cKFqPPqM/000000000000029483-5.jpg" alt="000000000000029483-5" border="0"></a>
+                <img src="https://images.unsplash.com/photo-1503785640985-f62e3aeee448?q=80&w=800&auto=format&fit=crop" alt="Grue Mobile">
                 <div class="preview-content">
-                    <h3>Mini-pelle sur chenilles KOMATSU PC26MR-5</h3>
-                    <p>Année 2022 - 968h</p>
+                    <h3>Grue Liebherr LTM</h3>
+                    <p>Année 2018 - 100T</p>
                 </div>
             </div>
             
             <!-- Machine 3 -->
             <div class="preview-card">
-                <a href="https://ibb.co/RTLzJmG8"><img src="https://i.ibb.co/606gqxcQ/000000000000028540-5.jpg" alt="000000000000028540-5" border="0"></a>
+                <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Pelle Hydraulique">
                 <div class="preview-content">
-                    <h3>Télescopique MANITOU MT1840 EASY 75 S</h3>
-                    <p>Année 2018 - 2385h</p>
+                    <h3>Pelle Caterpillar 320</h3>
+                    <p>Année 2020 - 3200h</p>
                 </div>
             </div>
         </div>
@@ -573,6 +738,18 @@
             mobileMenu.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
+    </script>
+
+    <!-- SCRIPT CARROUSEL -->
+    <script>
+        function scrollCarousel(direction) {
+            const track = document.getElementById('carouselTrack');
+            const scrollAmount = 290; 
+            track.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
     </script>
 
 </body>
