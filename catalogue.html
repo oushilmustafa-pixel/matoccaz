@@ -341,10 +341,23 @@
         /* =========================================
            RESPONSIVE
            ========================================= */
-        @media (max-width: 900px) {
-            .menu-toggle {
-                display: flex;
+                @media (max-width: 900px) {
+            /* ... votre code mobile existant ... */
+
+            /* --- CORRECTION DU FOOTER SUR MOBILE --- */
+            footer {
+                padding: 30px 15px; /* Un peu moins d'espace */
             }
+            footer p {
+                font-size: 0.45rem; /* Réduit la taille du texte */
+                line-height: 1.5;
+                margin-bottom: 8px;
+            }
+            footer a {
+                font-size: 0.85rem;
+                word-break: break-all; /* Évite que l'email dépasse de l'écran */
+            }
+        }
 
             .nav-links {
                 position: absolute;
