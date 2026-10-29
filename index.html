@@ -50,19 +50,22 @@
             padding: 0 20px;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--black);
+        /* --- LOGO IMAGE --- */
+        .logo-link {
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             z-index: 1001;
         }
-        .logo span {
-            color: var(--orange);
+
+        .logo-img {
+            height: 50px; /* Taille du logo sur PC */
+            width: auto;
+            display: block;
+            object-fit: contain; /* Évite la déformation */
         }
 
+        /* --- MENU DESKTOP --- */
         .nav-links {
             display: flex;
             align-items: center;
@@ -119,17 +122,15 @@
             box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
         }
 
-        /* --- HERO SECTION (100VH POUR PRENDRE TOUT L'ÉCRAN) --- */
+        /* --- HERO SECTION --- */
         .hero {
             background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.8)), url('https://i.ibb.co/BH0jQWQT/unnamed.webp');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Optionnel : effet parallaxe sympa sur PC */
+            background-attachment: fixed; 
             
-            /* On force la hauteur de l'écran */
             min-height: 100vh; 
             
-            /* On utilise Flexbox pour centrer parfaitement le contenu */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -279,14 +280,17 @@
             }
 
             /* Ajustements pour mobile */
+            .logo-img {
+                height: 40px; /* Logo plus petit sur mobile */
+            }
+
             .hero h1 {
-                font-size: 2.3rem; /* Titre plus adapté au mobile */
+                font-size: 2.3rem;
             }
             .hero p {
                 font-size: 1rem;
                 margin-bottom: 30px;
             }
-            /* On désactive l'effet parallaxe sur mobile qui peut buguer sur iPhone */
             .hero {
                 background-attachment: scroll; 
             }
@@ -298,7 +302,11 @@
     <!-- NAVIGATION -->
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="logo">MAT<span>OCCAZ</span></a>
+            
+            <!-- Le nouveau logo image -->
+            <a href="index.html" class="logo-link">
+                <img src="https://www.image2url.com/r2/default/images/1793273365525-4be732ac-f8a7-460e-ad9f-9dec89724549.png" alt="Logo MATOCCAZ" class="logo-img">
+            </a>
             
             <div class="menu-toggle" id="mobile-menu">
                 <span></span>
@@ -317,7 +325,7 @@
 
     <!-- HERO SECTION -->
     <section class="hero">
-        <h1>Achat et Vente<br><span>Matériels BTP</span></h1>
+        <h1>Achat et Vente de <br><span>Matériels BTP</span></h1>
         <p>Spécialiste des matériels de TP, levage et carrière. Livraison en Afrique, au Moyen-Orient et en Europe.</p>
         <a href="catalogue.html" class="btn">Découvrir le catalogue</a>
     </section>
