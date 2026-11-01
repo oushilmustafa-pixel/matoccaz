@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MATOCCAZ - À Propos de Nous</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
-    <!-- LIGNE AJOUTÉE POUR L'ICÔNE WHATSAPP -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -189,9 +188,124 @@
             line-height: 1.7;
         }
 
+        /* --- SECTION CHIFFRES CLÉS --- */
+        .stats-section {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--orange);
+        }
+        
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            color: var(--orange);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            color: #CCCCCC;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* --- SECTION PROCESSUS --- */
+        .process-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .process-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+        .process-section h2 span {
+            color: var(--orange);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .process-card {
+            background: var(--gray-light);
+            padding: 40px 30px;
+            border-radius: 8px;
+            border-top: 4px solid var(--orange);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .process-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .process-card i {
+            font-size: 2.5rem;
+            color: var(--orange);
+            margin-bottom: 20px;
+        }
+
+        .process-card h3 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .process-card p {
+            color: var(--gray-text);
+            font-size: 0.95rem;
+        }
+
+        /* --- SECTION CITATION --- */
+        .quote-section {
+            background-color: var(--gray-light);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quote-container blockquote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--black);
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .quote-container cite {
+            color: var(--orange);
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            font-style: normal;
+        }
+
         /* --- SECTION VALEURS --- */
         .values-section {
-            background-color: var(--gray-light);
+            background-color: var(--white);
             padding: 80px 20px;
         }
 
@@ -223,17 +337,19 @@
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             text-align: center;
-            border-top: 4px solid var(--orange);
+            border: 1px solid #eee;
             transition: transform 0.3s ease;
         }
 
         .value-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .value-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
+            color: var(--orange);
         }
 
         .value-card h3 {
@@ -463,7 +579,16 @@
             .history-text h2 {
                 font-size: 2rem;
             }
-            .values-section {
+            
+            .stat-item h3 {
+                font-size: 2.5rem;
+            }
+            
+            .quote-container blockquote {
+                font-size: 1.2rem;
+            }
+
+            .values-section, .process-section {
                 padding: 60px 20px;
             }
             .cta-section h2 {
@@ -535,8 +660,8 @@
 
     <!-- EN-TÊTE DE PAGE -->
     <header class="page-header">
-        <h1>À Propos de <span>MATOCCAZ</span></h1>
-        <p>Découvrez l'histoire et les valeurs de votre partenaire BTP.</p>
+        <h1>L'histoire de <span>MATOCCAZ</span></h1>
+        <p>Découvrez l'humain et l'expertise derrière vos machines.</p>
     </header>
 
     <!-- SECTION HISTOIRE -->
@@ -545,10 +670,68 @@
             <img src="https://i.ibb.co/XxhprwQz/unnamed-1.webp" alt="L'équipe MATOCCAZ">
         </div>
         <div class="history-text">
-            <h2>Notre <span>Histoire</span></h2>
-            <p>Fondée il y a plus de 12 ans, <strong>MATOCCAZ</strong> est née d'une passion pour les engins de chantier et d'une volonté farouche d'accompagner les professionnels du BTP dans leurs projets.</p>
-            <p>Au fil des années, nous avons bâti une expertise solide dans l'achat et la vente de matériels d'occasion. Nous connaissons la valeur d'une machine, son historique, et l'importance d'un matériel fiable sur un chantier.</p>
-            <p>Aujourd'hui, notre réputation n'est plus à faire. Nous sommes fiers de livrer nos machines aux quatre coins du monde, en Europe, en Afrique et au Moyen-Orient, tout en garantissant une logistique sans faille et des transactions sécurisées.</p>
+            <h2>Notre <span>Parcours</span></h2>
+            <p>Tout commence en 2007 au Maroc avec la création d'Azimabro par <strong>Mohamed Oumanni</strong>. Porté par une passion pour les engins et le commerce international, il décide d'implanter une seconde société en France en 2012 : <strong>MATOCCAZ</strong>, basée à Chasseneuil-du-Poitou.</p>
+            <p>Aujourd'hui, c'est une équipe soudée de 3 passionnés qui fait tourner la boutique. De la recherche de la machine à sa révision, en passant par l'exportation, nous gérons tout en interne.</p>
+            <p>Notre positionnement est clair : proposer du matériel d'occasion de qualité, acheté auprès de grands groupes (Colas, Vinci...) et révisé avec soin avant de partir vers sa nouvelle vie à l'international.</p>
+        </div>
+    </section>
+
+    <!-- SECTION CHIFFRES CLÉS (Très rassurant) -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>+12</h3>
+                <p>Années d'expertise</p>
+            </div>
+            <div class="stat-item">
+                <h3>100+</h3>
+                <p>Machines exportées / an</p>
+            </div>
+            <div class="stat-item">
+                <h3>6.4M€</h3>
+                <p>Chiffre d'affaires</p>
+            </div>
+            <div class="stat-item">
+                <h3>Top</h3>
+                <p>Export de la Vienne</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PROCESSUS -->
+    <section class="process-section">
+        <h2>Notre <span>Savoir-Faire</span></h2>
+        <div class="process-grid">
+            
+            <div class="process-card">
+                <i class="fa-solid fa-handshake"></i>
+                <h3>Sélection rigoureuse</h3>
+                <p>Nous achetons nos machines auprès de grands groupes de BTP qui renouvellent leur flotte. Chaque engin possède un historique clair et vérifié.</p>
+            </div>
+
+            <div class="process-card">
+                <i class="fa-solid fa-wrench"></i>
+                <h3>Révision par notre mécanicien</h3>
+                <p>Alexis, notre mécanicien, teste les organes vitaux de chaque machine. Nous remettons en état ce qui doit l'être, sans jamais cacher les défauts aux clients.</p>
+            </div>
+
+            <div class="process-card">
+                <i class="fa-solid fa-ship"></i>
+                <h3>Export dans le monde entier</h3>
+                <p>De Casablanca à l'Ukraine en passant par le Sénégal ou le Vietnam, nous gérons toute la logistique (transport, douanes) pour une livraison sans stress.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION CITATION -->
+    <section class="quote-section">
+        <div class="quote-container">
+            <blockquote>
+                "Avec une bonne expertise, on sait maintenant quelle entreprise peut acheter tel ou tel engin. J'aime trouver des solutions pour les gens. Mais on ne cache rien aux clients, si on trouve des défauts, on leur dit."
+            </blockquote>
+            <cite>— Mohamed Oumanni, Gérant de MATOCCAZ</cite>
         </div>
     </section>
 
@@ -559,21 +742,21 @@
             <div class="values-grid">
                 
                 <div class="value-card">
-                    <div class="value-icon">🤝</div>
-                    <h3>Confiance</h3>
-                    <p>La transparence est au cœur de nos échanges. Nous vous fournissons toutes les informations nécessaires pour que vous achetiez en toute sérénité.</p>
+                    <div class="value-icon"><i class="fa-solid fa-eye"></i></div>
+                    <h3>Transparence</h3>
+                    <p>Nous vous fournissons un rapport détaillé de l'état de chaque machine. Pas de mauvaise surprise, juste un achat en toute confiance.</p>
                 </div>
 
                 <div class="value-card">
-                    <div class="value-icon">🌍</div>
+                    <div class="value-icon"><i class="fa-solid fa-globe"></i></div>
                     <h3>Expertise Internationale</h3>
-                    <p>Maîtrisant les formalités douanières et le transport, nous exportons nos matériels partout dans le monde, sans stress pour vous.</p>
+                    <p>Maîtrisant 5 langues (français, anglais, espagnol, arabe, berbère) et les formalités douanières, nous exportons partout, sans stress pour vous.</p>
                 </div>
 
                 <div class="value-card">
-                    <div class="value-icon">⚙️</div>
+                    <div class="value-icon"><i class="fa-solid fa-check-double"></i></div>
                     <h3>Qualité</h3>
-                    <p>Chaque machine vendue est rigoureusement sélectionnée et inspectée. Nous ne proposons que du matériel en lequel nous croyons.</p>
+                    <p>Nous ne vendons que du matériel en lequel nous croyons. Chaque machine est inspectée et révisée avant son grand départ.</p>
                 </div>
 
             </div>
@@ -583,7 +766,7 @@
     <!-- SECTION CTA (Appel à l'action) -->
     <section class="cta-section">
         <h2>Prêt à travailler avec nous ?</h2>
-        <p>Que vous cherchiez une machine spécifique ou que vous ayez un projet d'export, notre équipe est là pour vous aider.</p>
+        <p>Que vous cherchiez une machine spécifique, un lot complet ou que vous ayez un projet d'export, notre équipe est là pour vous aider.</p>
         <div class="cta-buttons">
             <a href="catalogue.html" class="btn">Voir le catalogue</a>
             <a href="contact.html" class="btn-white">Nous contacter</a>
