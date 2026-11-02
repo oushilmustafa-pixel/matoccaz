@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Rosario:ital,wght@1,700&family=Roboto+Mono:wght@700&family=Proza+Libre:wght@400&display=swap" rel="stylesheet">
     
     <style>
-        /* --- VARIABLES DE COULEURS --- */
         :root {
             --white: #FFFFFF;
             --orange: #FF6B00;
@@ -17,7 +16,6 @@
             --gray-text: #555555;
         }
 
-        /* --- RESET & BASE --- */
         * {
             margin: 0;
             padding: 0;
@@ -187,16 +185,14 @@
         }
 
         /* ============================================================
-           SECTION TIMELINE — fond sombre + accent ORANGE
-           + EFFET 3D POP-OUT AU SCROLL (CORRIGÉ)
+           SECTION TIMELINE
            ============================================================ */
         .timeline-section {
-            background-color: #121212;
-            color: #ededed;
+            background-color: #0a0a0a; /* Fond noir plus profond pour le contraste */
+            color: #ffffff;
             padding: 80px 20px;
             border-top: 5px solid var(--orange);
             border-bottom: 5px solid var(--orange);
-            /* Perspective UNIQUEMENT ici, sur le parent direct des cartes */
             perspective: 1000px;
             perspective-origin: 50% 50%;
         }
@@ -212,21 +208,19 @@
             text-transform: uppercase;
             margin-bottom: 50px;
             font-weight: 900;
-            color: #ededed;
+            color: #ffffff;
         }
 
         .timeline-section h2 span {
             color: var(--orange);
         }
 
-        /* --- Timeline container --- */
         .timeline {
             display: flex;
             flex-direction: column;
             width: 100%;
         }
 
-        /* --- Chaque carte --- */
         .timeline article {
             --size: 0.625em;
             --highlight: var(--orange);
@@ -254,7 +248,6 @@
             padding-left: 3.5em;
             margin-top: -1px;
 
-            /* --- EFFET 3D POP-OUT --- */
             transform-style: preserve-3d;
             animation: card-pop-out linear both;
             animation-timeline: view();
@@ -280,20 +273,15 @@
             width: min(100%, 16em);
         }
 
-        /* Carte de contenu (glass sombre) */
+        /* ✅ CARTE : FOND OPAQUE SOMBRE, TEXTES VERROUILLÉS */
         .timeline__content {
-            padding: 1.75em;
-            background: rgba(255 255 255 / 0.07);
-            border: 1px solid rgba(255 255 255 / 0.06);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            padding: 2em;
+            background: #151515; /* Fond gris très sombre, sans transparence */
+            border: 1px solid #2a2a2a;
+            border-radius: var(--size, 0.625em);
             transform-style: preserve-3d;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .timeline__content:hover {
-            transform: translateZ(30px);
-            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.15);
+            /* Aucun flou, aucun filtre ! */
         }
 
         .timeline h1 {
@@ -303,16 +291,25 @@
             text-transform: capitalize;
         }
 
-        .timeline time {
+        /* ✅ TEXTE : BLANC PUR, FORCÉ ABSOLU */
+        .timeline time,
+        .timeline p {
             display: block;
-            color: #fff;
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+            opacity: 1 !important;
+            filter: none !important; 
+        }
+
+        .timeline time {
             font: 700 2.25em/1.25 'Roboto Mono', ui-monospace, monospace;
+            margin-bottom: 0.5em;
         }
 
         .timeline hr {
-            opacity: 0.3;
+            opacity: 0.5;
             border: none;
-            border-top: 1px solid currentColor;
+            border-top: 1px solid #ffffff;
             margin: 1em 0;
         }
 
@@ -320,7 +317,6 @@
             margin: 0;
             padding-top: 0.5em;
             font: 400 1em/1.6 'Proza Libre', system-ui, sans-serif;
-            color: #d8d8d8;
         }
 
         .timeline img {
@@ -332,48 +328,55 @@
             border-radius: var(--size, 0.625em);
             transform: translateZ(20px);
             transition: transform 0.3s ease;
+            filter: brightness(1);
+            animation: img-dim linear both;
+            animation-timeline: view();
+            animation-range: entry 0% cover 60%;
         }
 
         .timeline article:hover img {
             transform: translateZ(50px) scale(1.03);
         }
 
-        /* --- Keyframes (amplitude augmentée) --- */
         @keyframes card-pop-out {
             0% {
-                opacity: 0.4;
+                opacity: 1;
                 transform: translateZ(-250px) rotateX(25deg) scale(0.75);
-                filter: brightness(0.4);
             }
             100% {
                 opacity: 1;
                 transform: translateZ(0) rotateX(0) scale(1);
-                filter: brightness(1);
             }
         }
 
-        /* --- FALLBACK JS : navigateurs sans animation-timeline --- */
+        @keyframes img-dim {
+            0% { filter: brightness(0.6); }
+            100% { filter: brightness(1); }
+        }
+
         @supports not (animation-timeline: view()) {
             .timeline article {
                 animation: none;
-                opacity: 0;
+                opacity: 1;
                 transform: translateZ(-150px) rotateX(20deg) scale(0.85);
-                filter: brightness(0.5);
-                transition:
-                    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-                    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-                    filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+                transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
             }
             .timeline article.is-visible {
-                opacity: 1;
                 transform: translateZ(0) rotateX(0) scale(1);
+            }
+            .timeline img {
+                animation: none;
+                filter: brightness(0.6);
+                transition: filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+            .timeline article.is-visible img {
                 filter: brightness(1);
             }
         }
 
-        /* --- Accessibilité --- */
         @media (prefers-reduced-motion: reduce) {
-            .timeline article {
+            .timeline article,
+            .timeline img {
                 animation: none !important;
                 opacity: 1 !important;
                 transform: none !important;
@@ -383,89 +386,58 @@
         }
 
         /* ============================================================
-           DESKTOP (≥ 900px) : TIMELINE HORIZONTALE
+           DESKTOP
            ============================================================ */
         @media (min-width: 900px) {
-            .timeline {
-                flex-direction: row;
-                align-items: flex-start;
-                overflow-x: auto;
-                overflow-y: hidden;
-                scroll-snap-type: x mandatory;
-                padding: 1em 0 2em;
-                scrollbar-color: var(--orange) #121212;
-                scrollbar-width: thin;
+            .timeline-section {
+                perspective: 1400px;
             }
 
-            .timeline::-webkit-scrollbar {
-                height: 6px;
-            }
-            .timeline::-webkit-scrollbar-track {
-                background: rgba(255,255,255,0.05);
-                border-radius: 3px;
-            }
-            .timeline::-webkit-scrollbar-thumb {
-                background: var(--orange);
-                border-radius: 3px;
+            .timeline {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 0 2em;
             }
 
             .timeline article {
+                padding-left: 4em;
+                grid-template-columns: 1fr auto;
+                align-items: start;
+                gap: 2em;
                 background-position:
                     0 0,
-                    0 50%;
-                background-size:
-                    100% var(--size),
-                    100% 2px;
-
-                flex: 0 0 auto;
-                width: 24em;
-                scroll-snap-align: start;
-
-                padding-left: 0;
-                padding-top: 3em;
-                padding-bottom: 0;
-                padding-right: 2em;
-                margin-top: 0;
-                margin-left: -1px;
-            }
-
-            .timeline article:first-child {
-                --marker: linear-gradient(var(--highlight) 0 0) 0 0 /
-                    calc(0.5 * var(--size)) var(--size);
+                    2em 0;
             }
 
             .timeline article:not(:last-child) {
-                padding-bottom: 0;
-                padding-right: 2em;
+                padding-bottom: 4em;
             }
 
             .timeline article img {
                 order: 0;
-                justify-self: start;
-                width: 100%;
-                max-width: none;
+                justify-self: end;
+                width: 18em;
             }
 
-            /* Keyframes horizontaux */
             @keyframes card-pop-out {
                 0% {
-                    opacity: 0.4;
-                    transform: translateZ(-300px) rotateY(35deg) scale(0.8);
-                    filter: brightness(0.4);
+                    opacity: 1;
+                    transform: translateZ(-350px) rotateX(30deg) scale(0.7);
                 }
                 100% {
                     opacity: 1;
-                    transform: translateZ(0) rotateY(0) scale(1);
-                    filter: brightness(1);
+                    transform: translateZ(0) rotateX(0) scale(1);
                 }
             }
 
             @supports not (animation-timeline: view()) {
                 .timeline article {
-                    transform: translateZ(-200px) rotateY(30deg) scale(0.85);
+                    opacity: 1;
+                    transform: translateZ(-250px) rotateX(25deg) scale(0.8);
+                    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
                 }
                 .timeline article.is-visible {
-                    transform: translateZ(0) rotateY(0) scale(1);
+                    transform: translateZ(0) rotateX(0) scale(1);
                 }
             }
         }
@@ -512,7 +484,6 @@
             transform: translateY(-5px);
         }
 
-        /* --- Icônes SVG pro --- */
         .value-icon {
             display: inline-flex;
             align-items: center;
@@ -618,7 +589,7 @@
         }
 
         /* =========================================
-           RESPONSIVE (MOBILE & TABLETTE)
+           RESPONSIVE MOBILE
            ========================================= */
         @media (max-width: 900px) {
             
@@ -689,7 +660,6 @@
                 font-size: 2rem;
             }
 
-            /* Timeline mobile */
             .timeline-section {
                 padding: 60px 15px;
                 perspective: 800px;
@@ -719,7 +689,6 @@
 </head>
 <body>
 
-    <!-- NAVIGATION -->
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo-link">
@@ -741,13 +710,11 @@
         </div>
     </nav>
 
-    <!-- EN-TÊTE DE PAGE -->
     <header class="page-header">
         <h1>À Propos de <span>MATOCCAZ</span></h1>
         <p>Découvrez l'histoire et les valeurs de votre partenaire BTP.</p>
     </header>
 
-    <!-- SECTION HISTOIRE -->
     <section class="history-section">
         <div class="history-image">
             <img src="https://i.ibb.co/XxhprwQz/unnamed-1.webp" alt="L'équipe MATOCCAZ">
@@ -760,10 +727,6 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         SECTION TIMELINE — fond sombre + accent ORANGE
-         + EFFET 3D POP-OUT AU SCROLL
-         ============================================================ -->
     <section class="timeline-section">
         <div class="timeline-section__inner">
             <h2>Notre <span>Parcours</span></h2>
@@ -772,7 +735,7 @@
                 <article>
                     <div class="timeline__content">
                         <h1>Les débuts</h1>
-                        <time datetime="2012">2012</time>
+                        <time datetime="2004">2004</time>
                         <hr />
                         <p>
                             Création de MATOCCAZ et premières ventes de matériels
@@ -790,7 +753,7 @@
                 <article>
                     <div class="timeline__content">
                         <h1>Premières exportations</h1>
-                        <time datetime="2014">2014</time>
+                        <time datetime="2006">2006</time>
                         <hr />
                         <p>
                             Ouverture vers l'international : nos premières
@@ -808,7 +771,7 @@
                 <article>
                     <div class="timeline__content">
                         <h1>Développement en Europe</h1>
-                        <time datetime="2016">2016</time>
+                        <time datetime="2008">2008</time>
                         <hr />
                         <p>
                             Nouveaux partenariats en Europe. Notre réseau
@@ -826,7 +789,7 @@
                 <article>
                     <div class="timeline__content">
                         <h1>Expansion Moyen-Orient</h1>
-                        <time datetime="2018">2018</time>
+                        <time datetime="2010">2010</time>
                         <hr />
                         <p>
                             Nos premières livraisons au Moyen-Orient ouvrent
@@ -844,7 +807,7 @@
                 <article>
                     <div class="timeline__content">
                         <h1>Logistique renforcée</h1>
-                        <time datetime="2020">2020</time>
+                        <time datetime="2012">2012</time>
                         <hr />
                         <p>
                             Mise en place d'un processus logistique complet
@@ -862,7 +825,7 @@
                 <article>
                     <div class="timeline__content">
                         <h1>Croissance internationale</h1>
-                        <time datetime="2022">2022</time>
+                        <time datetime="2014">2014</time>
                         <hr />
                         <p>
                             Notre réputation n'est plus à faire. Les
@@ -880,7 +843,7 @@
                 <article>
                     <div class="timeline__content">
                         <h1>Digitalisation</h1>
-                        <time datetime="2024">2024</time>
+                        <time datetime="2016">2016</time>
                         <hr />
                         <p>
                             Lancement de notre catalogue en ligne. Nos
@@ -898,7 +861,7 @@
                 <article>
                     <div class="timeline__content">
                         <h1>Nouveaux marchés</h1>
-                        <time datetime="2026">2026</time>
+                        <time datetime="2018">2018</time>
                         <hr />
                         <p>
                             Ouverture de nouveaux marchés en Afrique de
@@ -912,17 +875,69 @@
                         loading="lazy"
                     />
                 </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Expertise reconnue</h1>
+                        <time datetime="2020">2020</time>
+                        <hr />
+                        <p>
+                            Malgré un contexte mondial difficile, MATOCCAZ
+                            maintient son activité et renforce sa position
+                            de partenaire de confiance.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600"
+                        alt="Porte-conteneurs"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Une nouvelle ère</h1>
+                        <time datetime="2022">2022</time>
+                        <hr />
+                        <p>
+                            Refonte complète de notre image de marque et de
+                            nos services pour mieux accompagner les
+                            professionnels du BTP.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600"
+                        alt="Équipe de travail"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Aujourd'hui</h1>
+                        <time datetime="2024">2024</time>
+                        <hr />
+                        <p>
+                            Plus de 12 ans d'expérience, des livraisons sur
+                            trois continents, et une équipe toujours aussi
+                            passionnée par les engins de chantier.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600"
+                        alt="Engin de chantier"
+                        loading="lazy"
+                    />
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- SECTION VALEURS -->
     <section class="values-section">
         <div class="values-container">
             <h2>Nos <span>Valeurs</span></h2>
             <div class="values-grid">
                 
-                <!-- Confiance -->
                 <div class="value-card">
                     <div class="value-icon" aria-hidden="true">
                         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -934,7 +949,6 @@
                     <p>La transparence est au cœur de nos échanges. Nous vous fournissons toutes les informations nécessaires pour que vous achetiez en toute sérénité.</p>
                 </div>
 
-                <!-- Expertise Internationale -->
                 <div class="value-card">
                     <div class="value-icon" aria-hidden="true">
                         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -948,7 +962,6 @@
                     <p>Maîtrisant les formalités douanières et le transport, nous exportons nos matériels partout dans le monde, sans stress pour vous.</p>
                 </div>
 
-                <!-- Qualité -->
                 <div class="value-card">
                     <div class="value-icon" aria-hidden="true">
                         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -966,7 +979,6 @@
         </div>
     </section>
 
-    <!-- SECTION CTA -->
     <section class="cta-section">
         <h2>Prêt à travailler avec nous ?</h2>
         <p>Que vous cherchiez une machine spécifique ou que vous ayez un projet d'export, notre équipe est là pour vous aider.</p>
@@ -976,20 +988,13 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <p><strong>MATOCCAZ</strong> - 31 Avenue des Temps Modernes, 86360 CHASSENEUIL DU POITOU</p>
         <p>Téléphone : +33 5 49 13 39 12 | Email : <a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></p>
         <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
     </footer>
 
-    <!-- ============================================================
-         SCRIPTS
-         ============================================================ -->
     <script>
-        /* ============================================================
-           1. MENU MOBILE
-           ============================================================ */
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
 
@@ -1006,10 +1011,6 @@
             });
         });
 
-        /* ============================================================
-           2. FALLBACK 3D : si le navigateur ne supporte pas
-              animation-timeline: view(), on utilise IntersectionObserver
-           ============================================================ */
         const supportsScrollTimeline =
             CSS.supports('animation-timeline', 'view()');
 
@@ -1032,7 +1033,7 @@
                 }
             );
 
-            cards.forEach((card) => observer.observe(card));
+            cards.forEach(card => observer.observe(card));
         }
     </script>
 
