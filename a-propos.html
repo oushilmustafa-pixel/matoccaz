@@ -188,6 +188,7 @@
 
         /* ============================================================
            SECTION TIMELINE — fond sombre + accent ORANGE
+           + EFFET 3D POP-OUT AU SCROLL (CORRIGÉ)
            ============================================================ */
         .timeline-section {
             background-color: #121212;
@@ -195,6 +196,9 @@
             padding: 80px 20px;
             border-top: 5px solid var(--orange);
             border-bottom: 5px solid var(--orange);
+            /* Perspective UNIQUEMENT ici, sur le parent direct des cartes */
+            perspective: 1000px;
+            perspective-origin: 50% 50%;
         }
 
         .timeline-section__inner {
@@ -215,13 +219,14 @@
             color: var(--orange);
         }
 
-        /* --- Timeline --- */
+        /* --- Timeline container --- */
         .timeline {
             display: flex;
             flex-direction: column;
             width: 100%;
         }
 
+        /* --- Chaque carte --- */
         .timeline article {
             --size: 0.625em;
             --highlight: var(--orange);
@@ -248,6 +253,12 @@
 
             padding-left: 3.5em;
             margin-top: -1px;
+
+            /* --- EFFET 3D POP-OUT --- */
+            transform-style: preserve-3d;
+            animation: card-pop-out linear both;
+            animation-timeline: view();
+            animation-range: entry 0% cover 60%;
         }
 
         .timeline article:first-child {
@@ -269,13 +280,20 @@
             width: min(100%, 16em);
         }
 
-        /* Carte de contenu (version glass sombre) */
+        /* Carte de contenu (glass sombre) */
         .timeline__content {
             padding: 1.75em;
             background: rgba(255 255 255 / 0.07);
             border: 1px solid rgba(255 255 255 / 0.06);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline__content:hover {
+            transform: translateZ(30px);
+            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.15);
         }
 
         .timeline h1 {
@@ -312,6 +330,56 @@
             aspect-ratio: 1.3;
             object-fit: cover;
             border-radius: var(--size, 0.625em);
+            transform: translateZ(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline article:hover img {
+            transform: translateZ(50px) scale(1.03);
+        }
+
+        /* --- Keyframes (amplitude augmentée) --- */
+        @keyframes card-pop-out {
+            0% {
+                opacity: 0.4;
+                transform: translateZ(-250px) rotateX(25deg) scale(0.75);
+                filter: brightness(0.4);
+            }
+            100% {
+                opacity: 1;
+                transform: translateZ(0) rotateX(0) scale(1);
+                filter: brightness(1);
+            }
+        }
+
+        /* --- FALLBACK JS : navigateurs sans animation-timeline --- */
+        @supports not (animation-timeline: view()) {
+            .timeline article {
+                animation: none;
+                opacity: 0;
+                transform: translateZ(-150px) rotateX(20deg) scale(0.85);
+                filter: brightness(0.5);
+                transition:
+                    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                    filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+            .timeline article.is-visible {
+                opacity: 1;
+                transform: translateZ(0) rotateX(0) scale(1);
+                filter: brightness(1);
+            }
+        }
+
+        /* --- Accessibilité --- */
+        @media (prefers-reduced-motion: reduce) {
+            .timeline article {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+                transition: none !important;
+            }
         }
 
         /* ============================================================
@@ -322,6 +390,7 @@
                 flex-direction: row;
                 align-items: flex-start;
                 overflow-x: auto;
+                overflow-y: hidden;
                 scroll-snap-type: x mandatory;
                 padding: 1em 0 2em;
                 scrollbar-color: var(--orange) #121212;
@@ -376,6 +445,29 @@
                 width: 100%;
                 max-width: none;
             }
+
+            /* Keyframes horizontaux */
+            @keyframes card-pop-out {
+                0% {
+                    opacity: 0.4;
+                    transform: translateZ(-300px) rotateY(35deg) scale(0.8);
+                    filter: brightness(0.4);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateZ(0) rotateY(0) scale(1);
+                    filter: brightness(1);
+                }
+            }
+
+            @supports not (animation-timeline: view()) {
+                .timeline article {
+                    transform: translateZ(-200px) rotateY(30deg) scale(0.85);
+                }
+                .timeline article.is-visible {
+                    transform: translateZ(0) rotateY(0) scale(1);
+                }
+            }
         }
 
         /* --- SECTION VALEURS --- */
@@ -420,9 +512,30 @@
             transform: translateY(-5px);
         }
 
+        /* --- Icônes SVG pro --- */
         .value-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: rgba(255, 107, 0, 0.08);
+            color: var(--orange);
+            transition: all 0.3s ease;
+        }
+
+        .value-icon svg {
+            width: 42px;
+            height: 42px;
+            display: block;
+        }
+
+        .value-card:hover .value-icon {
+            background: var(--orange);
+            color: var(--white);
+            transform: scale(1.05);
         }
 
         .value-card h3 {
@@ -579,6 +692,7 @@
             /* Timeline mobile */
             .timeline-section {
                 padding: 60px 15px;
+                perspective: 800px;
             }
             .timeline-section h2 {
                 font-size: 2rem;
@@ -648,6 +762,7 @@
 
     <!-- ============================================================
          SECTION TIMELINE — fond sombre + accent ORANGE
+         + EFFET 3D POP-OUT AU SCROLL
          ============================================================ -->
     <section class="timeline-section">
         <div class="timeline-section__inner">
@@ -861,20 +976,42 @@
             <h2>Nos <span>Valeurs</span></h2>
             <div class="values-grid">
                 
+                <!-- Confiance -->
                 <div class="value-card">
-                    <div class="value-icon">🤝</div>
+                    <div class="value-icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32 54C32 54 10 42 10 24C10 17 15 12 22 12C26 12 30 14 32 18C34 14 38 12 42 12C49 12 54 17 54 24C54 42 32 54 32 54Z" 
+                                  stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <h3>Confiance</h3>
                     <p>La transparence est au cœur de nos échanges. Nous vous fournissons toutes les informations nécessaires pour que vous achetiez en toute sérénité.</p>
                 </div>
 
+                <!-- Expertise Internationale -->
                 <div class="value-card">
-                    <div class="value-icon">🌍</div>
+                    <div class="value-icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="32" r="22" stroke="currentColor" stroke-width="3"/>
+                            <ellipse cx="32" cy="32" rx="10" ry="22" stroke="currentColor" stroke-width="3"/>
+                            <path d="M10 32H54" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M14 20H50M14 44H50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <h3>Expertise Internationale</h3>
                     <p>Maîtrisant les formalités douanières et le transport, nous exportons nos matériels partout dans le monde, sans stress pour vous.</p>
                 </div>
 
+                <!-- Qualité -->
                 <div class="value-card">
-                    <div class="value-icon">⚙️</div>
+                    <div class="value-icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32 4L40 12H52V24L60 32L52 40V52H40L32 60L24 52H12V40L4 32L12 24V12H24L32 4Z" 
+                                  stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M22 32L29 39L43 25" 
+                                  stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <h3>Qualité</h3>
                     <p>Chaque machine vendue est rigoureusement sélectionnée et inspectée. Nous ne proposons que du matériel en lequel nous croyons.</p>
                 </div>
@@ -900,8 +1037,13 @@
         <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
     </footer>
 
-    <!-- SCRIPT MENU MOBILE -->
+    <!-- ============================================================
+         SCRIPTS
+         ============================================================ -->
     <script>
+        /* ============================================================
+           1. MENU MOBILE
+           ============================================================ */
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
 
@@ -917,6 +1059,35 @@
                 navLinks.classList.remove('active');
             });
         });
+
+        /* ============================================================
+           2. FALLBACK 3D : si le navigateur ne supporte pas
+              animation-timeline: view(), on utilise IntersectionObserver
+           ============================================================ */
+        const supportsScrollTimeline =
+            CSS.supports('animation-timeline', 'view()');
+
+        if (!supportsScrollTimeline) {
+            const cards = document.querySelectorAll('.timeline article');
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                        } else {
+                            entry.target.classList.remove('is-visible');
+                        }
+                    });
+                },
+                {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -10% 0px'
+                }
+            );
+
+            cards.forEach((card) => observer.observe(card));
+        }
     </script>
 
 </body>
