@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MATOCCAZ - Matériels BTP</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
-    <!-- LIGNE AJOUTÉE POUR L'ICÔNE WHATSAPP -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* --- VARIABLES DE COULEURS --- */
@@ -17,7 +15,6 @@
             --black: #1A1A1A;
             --gray-light: #F4F4F4;
             --gray-text: #555555;
-            --whatsapp: #25D366;
         }
 
         /* --- RESET & BASE --- */
@@ -459,7 +456,7 @@
 
         /* --- SECTION FAQ --- */
         .section-faq {
-            background-color: var(--gray-light);
+            background-color: var(--gray-light); /* Même fond que l'aperçu catalogue pour l'alternance */
             padding: 80px 20px;
         }
 
@@ -533,112 +530,22 @@
             transform: rotate(45deg);
         }
 
-        /* --- BOUTON WHATSAPP FLOTTANT --- */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 32px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #1EBE5D;
-        }
-
-        /* --- FOOTER (Style catalogue) --- */
+        /* --- FOOTER --- */
         footer {
             background-color: var(--black);
             color: var(--white);
-            padding: 50px 20px 20px 20px; 
+            padding: 40px 20px;
+            text-align: center;
             border-top: 5px solid var(--orange);
         }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 20px; 
+        footer p {
+            color: #AAAAAA;
+            margin-bottom: 10px;
         }
-
-        .footer-col h3 {
+        footer a {
             color: var(--orange);
-            font-size: 1.2rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        .footer-links, .footer-contact {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-links li, .footer-contact li {
-            height: 35px; 
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-            font-size: 1rem;
-            color: #AAAAAA;
-        }
-
-        .footer-links a, .footer-contact a {
-            color: #AAAAAA;
             text-decoration: none;
-            transition: color 0.3s;
-        }
-        .footer-links a:hover, .footer-contact a:hover {
-            color: var(--white);
-        }
-
-        .footer-contact li.address {
-            height: auto;
-            align-items: flex-start;
-            line-height: 1.5;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 40px;
-        }
-        .footer-legal a {
-            color: #777;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .footer-legal a:hover {
-            color: var(--white);
+            font-weight: bold;
         }
 
         /* =========================================
@@ -723,44 +630,6 @@
             .faq-question {
                 font-size: 1rem;
                 padding: 15px 20px;
-            }
-
-            /* Ajustement du bouton flottant sur mobile */
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 30px;
-            }
-
-            /* --- FOOTER MOBILE --- */
-            .footer-container {
-                gap: 15px;
-                margin-bottom: 20px;
-            }
-
-            .footer-col h3 {
-                font-size: 0.95rem;
-                margin-bottom: 15px;
-            }
-
-            .footer-links li, .footer-contact li {
-                font-size: 0.8rem;
-                height: 30px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center; 
-                gap: 15px;
-            }
-
-            .footer-legal {
-                flex-direction: row;
-                justify-content: center;
-                gap: 20px;
-                width: 100%;
             }
         }
     </style>
@@ -876,7 +745,7 @@
         <div class="grid">
             <!-- Machine 1 -->
             <div class="preview-card">
-                <a href="https://ibb.co/prrzpdfV"><img src="https://i.ibb.co/n88cSj7d/42d0de3-000000000000027779-5.webp" alt="42d0de3-000000000000027779-5" border="0"></a>
+                <a href="https://ibb.co/2362B5Yg"><img src="https://i.ibb.co/qYnGwxFk/27779-5.jpg" alt="27779-5" border="0"></a>
                 <div class="preview-content">
                     <h3>Tombereau articulé CATERPILLAR D400D</h3>
                     <p>Année 2000 - 13 000h</p>
@@ -954,44 +823,11 @@
         </div>
     </section>
 
-    <!-- BOUTON WHATSAPP FLOTTANT -->
-    <a href="https://wa.me/33648645987?text=Bonjour,%20je%20souhaite%20avoir%20plus%20d'informations" class="whatsapp-float" target="_blank" aria-label="Contact WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- FOOTER (Style catalogue) -->
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-container">
-            <!-- Colonne 1 : Navigation -->
-            <div class="footer-col">
-                <h3>NAVIGATION</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="catalogue.html">Notre Catalogue</a></li>
-                    <li><a href="a-propos.html">À Propos</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Colonne 2 : Contact -->
-            <div class="footer-col">
-                <h3>CONTACT</h3>
-                <ul class="footer-contact">
-                    <li class="address">31 Avenue des Temps Modernes<br>86360 CHASSENEUIL DU POITOU</li>
-                    <li><a href="tel:+33648645987">+33 6 48 64 59 87</a></li>
-                    <li><a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Bas du footer -->
-        <div class="footer-bottom">
-            <p>&copy; 2026 MATOCCAZ. Tous droits réservés.</p>
-            <div class="footer-legal">
-                <a href="#">Mentions légales</a>
-                <a href="#">Politique de confidentialité</a>
-            </div>
-        </div>
+        <p><strong>MATOCCAZ</strong> - 31 Avenue des Temps Modernes, 86360 CHASSENEUIL DU POITOU</p>
+        <p>Téléphone : +33 5 49 13 39 12 | Email : <a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></p>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
     </footer>
 
     <!-- SCRIPT MENU MOBILE -->

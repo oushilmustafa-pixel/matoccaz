@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MATOCCAZ - Notre Catalogue</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
-    <!-- LIGNE AJOUTÉE POUR L'ICÔNE WHATSAPP -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* --- VARIABLES DE COULEURS --- */
@@ -29,12 +27,12 @@
         }
 
         body {
-            background-color: var(--gray-light);
+            background-color: var(--gray-light); /* Fond gris clair pour faire ressortir les cartes */
             color: var(--black);
             line-height: 1.6;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION (Identique à l'accueil) --- */
         nav {
             background-color: var(--white);
             padding: 10px 0;
@@ -102,16 +100,36 @@
             transition: all 0.3s ease;
         }
 
+        .btn {
+            display: inline-block;
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--orange);
+        }
+        .btn:hover {
+            background-color: var(--white);
+            color: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
         /* --- EN-TÊTE DE PAGE --- */
         .page-header {
             background-color: var(--black);
             color: var(--white);
             text-align: center;
-            padding: 30px 20px; 
+            padding: 20px 20px;
             border-bottom: 5px solid var(--orange);
         }
         .page-header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             text-transform: uppercase;
             font-weight: 900;
         }
@@ -120,49 +138,44 @@
         }
         .page-header p {
             color: #CCC;
-            margin-top: 5px;
-            font-size: 1rem;
+            margin-top: 10px;
+            font-size: 1.1rem;
         }
 
-        /* --- MENU DÉROULANT DE FILTRE --- */
-        .filter-container {
+        /* --- BARRE DE FILTRES (Design simple) --- */
+        .filters {
             max-width: 1200px;
-            margin: 40px auto 10px auto;
+            margin: 40px auto 20px auto;
             padding: 0 20px;
             display: flex;
-            justify-content: flex-end; 
-            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 15px;
         }
 
-        .filter-container label {
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-
-        .filter-select {
-            padding: 12px 20px;
-            font-size: 1rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: var(--black);
+        .filter-btn {
             background-color: var(--white);
-            border: 2px solid var(--orange);
-            border-radius: 4px;
+            color: var(--black);
+            border: 2px solid var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
             cursor: pointer;
-            outline: none;
-            min-width: 250px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
         }
 
-        .filter-select:focus {
-            box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--orange);
+            color: var(--white);
+            border-color: var(--orange);
         }
 
         /* --- GRILLE CATALOGUE --- */
         .catalogue-container {
             max-width: 1200px;
-            margin: 20px auto 80px auto; 
+            margin: 40px auto;
             padding: 0 20px;
         }
 
@@ -262,10 +275,6 @@
         .btn-whatsapp:hover {
             background-color: #1EBE5D;
         }
-        
-        .btn-whatsapp i {
-            font-size: 1.2rem; /* Taille de l'icône dans le bouton de la carte */
-        }
 
         .btn-details {
             display: block;
@@ -290,20 +299,20 @@
             position: fixed;
             width: 60px;
             height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
+            bottom: 40px;
+            right: 40px;
+            background-color: var(--whatsapp);
             color: #FFF;
             border-radius: 50px;
             text-align: center;
-            font-size: 32px;
+            font-size: 30px;
             box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
         }
 
         .whatsapp-float:hover {
@@ -315,91 +324,40 @@
         footer {
             background-color: var(--black);
             color: var(--white);
-            padding: 50px 20px 20px 20px; 
+            padding: 40px 20px;
+            text-align: center;
             border-top: 5px solid var(--orange);
         }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 20px; 
+        footer p {
+            color: #AAAAAA;
+            margin-bottom: 10px;
         }
-
-        .footer-col h3 {
+        footer a {
             color: var(--orange);
-            font-size: 1.2rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        .footer-links, .footer-contact {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-links li, .footer-contact li {
-            height: 35px; 
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-            font-size: 1rem;
-            color: #AAAAAA;
-        }
-
-        .footer-links a, .footer-contact a {
-            color: #AAAAAA;
             text-decoration: none;
-            transition: color 0.3s;
-        }
-        .footer-links a:hover, .footer-contact a:hover {
-            color: var(--white);
-        }
-
-        .footer-contact li.address {
-            height: auto;
-            align-items: flex-start;
-            line-height: 1.5;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 40px;
-        }
-        .footer-legal a {
-            color: #777;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .footer-legal a:hover {
-            color: var(--white);
+            font-weight: bold;
         }
 
         /* =========================================
-           RESPONSIVE (MOBILE)
+           RESPONSIVE
            ========================================= */
-        @media (max-width: 900px) {
-            .menu-toggle {
-                display: flex;
+                @media (max-width: 900px) {
+            /* ... votre code mobile existant ... */
+
+            /* --- CORRECTION DU FOOTER SUR MOBILE --- */
+            footer {
+                padding: 30px 15px; /* Un peu moins d'espace */
             }
+            footer p {
+                font-size: 0.45rem; /* Réduit la taille du texte */
+                line-height: 1.5;
+                margin-bottom: 8px;
+            }
+            footer a {
+                font-size: 0.85rem;
+                word-break: break-all; /* Évite que l'email dépasse de l'écran */
+            }
+        }
 
             .nav-links {
                 position: absolute;
@@ -442,53 +400,13 @@
                 font-size: 2rem;
             }
 
-            /* Ajustements Mobile Filtre */
-            .filter-container {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-                margin-top: 20px;
-            }
-            .filter-select {
-                width: 100%;
-            }
-
             /* Ajustement du bouton flottant sur mobile */
             .whatsapp-float {
-                width: 55px;
-                height: 55px;
+                width: 0px;
+                height: 50px;
                 bottom: 20px;
                 right: 20px;
-                font-size: 30px;
-            }
-
-            /* --- FOOTER MOBILE --- */
-            .footer-container {
-                gap: 15px;
-                margin-bottom: 20px;
-            }
-
-            .footer-col h3 {
-                font-size: 0.95rem;
-                margin-bottom: 15px;
-            }
-
-            .footer-links li, .footer-contact li {
-                font-size: 0.8rem;
-                height: 30px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center; 
-                gap: 15px;
-            }
-
-            .footer-legal {
-                flex-direction: row;
-                justify-content: center;
-                gap: 20px;
-                width: 100%;
+                font-size: 25px;
             }
         }
     </style>
@@ -510,7 +428,7 @@
 
             <div class="nav-links" id="nav-links">
                 <a href="index.html">Accueil</a>
-                <a href="catalogue.html" style="color: var(--orange);">Matériels</a>
+                <a href="catalogue.html" style="color: var(--orange);">Matériels</a> <!-- Lien actif -->
                 <a href="a-propos.html">À Propos</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -519,32 +437,25 @@
 
     <!-- EN-TÊTE DE PAGE -->
     <header class="page-header">
-        <h1>Notre <span>Catalogue</span></h1>
+        <h1>Notre Catalogue <span>MATOCCAZ</span></h1>
         <p>Découvrez nos machines disponibles à la vente</p>
     </header>
 
-    <!-- MENU DÉROULANT DE FILTRE (8 CATÉGORIES) -->
-    <div class="filter-container">
-        <label for="categoryFilter">Filtrer par catégorie :</label>
-        <select id="categoryFilter" class="filter-select">
-            <option value="all">Tout voir</option>
-            <option value="Bulldozers">Bulldozers</option>
-            <option value="Chargeuses">Chargeuses</option>
-            <option value="Chariots">Chariots télescopiques</option>
-            <option value="Compacteurs">Compacteurs</option>
-            <option value="Niveleuses">Niveleuses</option>
-            <option value="Pelles">Pelles</option>
-            <option value="Scrapers">Scrapers</option>
-            <option value="Tombereaux">Tombereaux</option>
-        </select>
+    <!-- BARRE DE FILTRES (Design simple) -->
+    <div class="filters">
+        <button class="filter-btn active">Tout voir</button>
+        <button class="filter-btn">Pelles</button>
+        <button class="filter-btn">Chargeuses</button>
+        <button class="filter-btn">Tombereaux</button>
+        <button class="filter-btn">Compacteurs</button>
     </div>
 
     <!-- SECTION CATALOGUE -->
     <main class="catalogue-container">
-        <div class="grid-machines" id="machineGrid">
+        <div class="grid-machines">
             
-            <!-- MACHINE 1 : Tombereau -->
-            <article class="machine-card" data-category="Tombereaux">
+            <!-- MACHINE 1 (Exemple avec le Tombereau de votre site) -->
+            <article class="machine-card">
                 <img src="https://i.ibb.co/BH0jQWQT/unnamed.webp" alt="Tombereau" class="machine-image">
                 <div class="machine-content">
                     <span class="machine-category">Tombereaux</span>
@@ -556,16 +467,17 @@
                         <li><strong>Pays :</strong> France</li>
                     </ul>
                     <div class="machine-actions">
+                        <!-- Le lien WhatsApp avec le numéro du flyer et le nom de la machine pré-rempli -->
                         <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20le%20Tombereau%20Articulé%20Caterpillar%20D400D" target="_blank" class="btn-whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i> Contacter
+                            💬 Contacter sur WhatsApp
                         </a>
                         <a href="#" class="btn-details">Voir les détails</a>
                     </div>
                 </div>
             </article>
 
-            <!-- MACHINE 2 : Chariot Télescopique -->
-            <article class="machine-card" data-category="Chariots">
+            <!-- MACHINE 2 (Exemple avec le Manitou de votre site) -->
+            <article class="machine-card">
                 <img src="https://images.unsplash.com/photo-1503785640985-f62e3aeee448?q=80&w=800&auto=format&fit=crop" alt="Chariot Télescopique" class="machine-image">
                 <div class="machine-content">
                     <span class="machine-category">Chariots télescopiques</span>
@@ -578,15 +490,15 @@
                     </ul>
                     <div class="machine-actions">
                         <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20le%20Manitou%20MT1840%20Easy%2075%20S" target="_blank" class="btn-whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i> Contacter
+                            💬 Contacter sur WhatsApp
                         </a>
                         <a href="#" class="btn-details">Voir les détails</a>
                     </div>
                 </div>
             </article>
 
-            <!-- MACHINE 3 : Pelle -->
-            <article class="machine-card" data-category="Pelles">
+            <!-- MACHINE 3 (Exemple avec la Mini-Pelle de votre site) -->
+            <article class="machine-card">
                 <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Mini-Pelle" class="machine-image">
                 <div class="machine-content">
                     <span class="machine-category">Pelles</span>
@@ -599,15 +511,15 @@
                     </ul>
                     <div class="machine-actions">
                         <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20la%20Mini-Pelle%20Komatsu%20PC26MR-5" target="_blank" class="btn-whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i> Contacter
+                            💬 Contacter sur WhatsApp
                         </a>
                         <a href="#" class="btn-details">Voir les détails</a>
                     </div>
                 </div>
             </article>
 
-            <!-- MACHINE 4 : Chargeuse -->
-            <article class="machine-card" data-category="Chargeuses">
+            <!-- MACHINE 4 (Exemple) -->
+            <article class="machine-card">
                 <img src="https://images.unsplash.com/photo-1579412694468-2d9d5e10d8a1?q=80&w=800&auto=format&fit=crop" alt="Chargeuse" class="machine-image">
                 <div class="machine-content">
                     <span class="machine-category">Chargeuses</span>
@@ -620,15 +532,15 @@
                     </ul>
                     <div class="machine-actions">
                         <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20la%20Chargeuse%20Volvo%20L120H" target="_blank" class="btn-whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i> Contacter
+                            💬 Contacter sur WhatsApp
                         </a>
                         <a href="#" class="btn-details">Voir les détails</a>
                     </div>
                 </div>
             </article>
 
-            <!-- MACHINE 5 : Compacteur -->
-            <article class="machine-card" data-category="Compacteurs">
+            <!-- MACHINE 5 (Exemple) -->
+            <article class="machine-card">
                 <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop" alt="Compacteur" class="machine-image">
                 <div class="machine-content">
                     <span class="machine-category">Compacteurs</span>
@@ -641,15 +553,15 @@
                     </ul>
                     <div class="machine-actions">
                         <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20le%20Compacteur%20Bomag%20BW%20154" target="_blank" class="btn-whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i> Contacter
+                            💬 Contacter sur WhatsApp
                         </a>
                         <a href="#" class="btn-details">Voir les détails</a>
                     </div>
                 </div>
             </article>
 
-            <!-- MACHINE 6 : Pelle -->
-            <article class="machine-card" data-category="Pelles">
+            <!-- MACHINE 6 (Exemple) -->
+            <article class="machine-card">
                 <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop" alt="Pelle" class="machine-image">
                 <div class="machine-content">
                     <span class="machine-category">Pelles</span>
@@ -662,7 +574,7 @@
                     </ul>
                     <div class="machine-actions">
                         <a href="https://wa.me/33648645987?text=Bonjour,%20je%20suis%20intéressé%20par%20la%20Pelle%20Caterpillar%20320" target="_blank" class="btn-whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i> Contacter
+                            💬 Contacter sur WhatsApp
                         </a>
                         <a href="#" class="btn-details">Voir les détails</a>
                     </div>
@@ -673,43 +585,15 @@
     </main>
 
     <!-- BOUTON WHATSAPP FLOTTANT -->
-    <a href="https://wa.me/33648645987?text=Bonjour,%20je%20souhaite%20avoir%20plus%20d'informations" class="whatsapp-float" target="_blank" aria-label="Contact WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
+    <a href="https://wa.me/33648645987?text=Bonjour,%20je%20souhaite%20avoir%20plus%20d'informations" class="whatsapp-float" target="_blank">
+        💬
     </a>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (Identique à l'accueil) -->
     <footer>
-        <div class="footer-container">
-            <!-- Colonne 1 : Navigation -->
-            <div class="footer-col">
-                <h3>NAVIGATION</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="catalogue.html">Notre Catalogue</a></li>
-                    <li><a href="a-propos.html">À Propos</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Colonne 2 : Contact -->
-            <div class="footer-col">
-                <h3>CONTACT</h3>
-                <ul class="footer-contact">
-                    <li class="address">31 Avenue des Temps Modernes<br>86360 CHASSENEUIL DU POITOU</li>
-                    <li><a href="tel:+33648645987">+33 6 48 64 59 87</a></li>
-                    <li><a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Bas du footer -->
-        <div class="footer-bottom">
-            <p>&copy; 2026 MATOCCAZ. Tous droits réservés.</p>
-            <div class="footer-legal">
-                <a href="#">Mentions légales</a>
-                <a href="#">Politique de confidentialité</a>
-            </div>
-        </div>
+        <p><strong>MATOCCAZ</strong> - 31 Avenue des Temps Modernes, 86360 CHASSENEUIL DU POITOU</p>
+        <p>Téléphone : +33 5 49 13 39 12 | Email : <a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></p>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
     </footer>
 
     <!-- SCRIPT MENU MOBILE -->
@@ -720,26 +604,6 @@
         mobileMenu.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
             navLinks.classList.toggle('active');
-        });
-    </script>
-
-    <!-- SCRIPT FILTRE DU CATALOGUE -->
-    <script>
-        const filterSelect = document.getElementById('categoryFilter');
-        const machineCards = document.querySelectorAll('.machine-card');
-
-        filterSelect.addEventListener('change', function() {
-            const selectedCategory = this.value;
-
-            machineCards.forEach(card => {
-                const cardCategory = card.getAttribute('data-category');
-
-                if (selectedCategory === 'all' || selectedCategory === cardCategory) {
-                    card.style.display = 'flex'; 
-                } else {
-                    card.style.display = 'none'; 
-                }
-            });
         });
     </script>
 

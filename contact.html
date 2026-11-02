@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATOCCAZ - Contactez-nous</title>
+    <title>MATOCCAZ - Contact</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
-    <!-- LIGNE AJOUTÉE POUR L'ICÔNE WHATSAPP -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* --- VARIABLES DE COULEURS --- */
@@ -29,7 +27,7 @@
         }
 
         body {
-            background-color: var(--gray-light);
+            background-color: var(--gray-light); 
             color: var(--black);
             line-height: 1.6;
         }
@@ -102,32 +100,53 @@
             transition: all 0.3s ease;
         }
 
-        /* --- EN-TÊTE DE PAGE --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--orange);
+        }
+        .btn:hover {
+            background-color: var(--white);
+            color: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        /* --- EN-TÊTE DE PAGE (MODIFIÉ POUR ÊTRE PLUS PETIT) --- */
         .page-header {
             background-color: var(--black);
             color: var(--white);
             text-align: center;
-            padding: 60px 20px;
+            padding: 15px 20px; /* Padding réduit en hauteur */
             border-bottom: 5px solid var(--orange);
         }
         .page-header h1 {
-            font-size: 3rem;
+            font-size: 2.2rem; /* Taille de police fortement réduite */
             text-transform: uppercase;
             font-weight: 900;
+            margin-bottom: 0;
         }
         .page-header h1 span {
             color: var(--orange);
         }
         .page-header p {
             color: #CCC;
-            margin-top: 10px;
-            font-size: 1.1rem;
+            margin-top: 5px; /* Espace réduit */
+            font-size: 1rem; /* Texte légèrement plus petit */
         }
 
         /* --- SECTION CONTACT --- */
         .contact-section {
             max-width: 1200px;
-            margin: 60px auto;
+            margin: 40px auto;
             padding: 0 20px;
             display: flex;
             gap: 50px;
@@ -282,36 +301,6 @@
         .btn-whatsapp-direct:hover {
             background-color: #1EBE5D;
         }
-        
-        .btn-whatsapp-direct i {
-            font-size: 1.2rem;
-        }
-
-        /* --- BOUTON WHATSAPP FLOTTANT --- */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 32px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #1EBE5D;
-        }
 
         /* --- FOOTER --- */
         footer {
@@ -320,7 +309,6 @@
             padding: 40px 20px;
             text-align: center;
             border-top: 5px solid var(--orange);
-            margin-top: 80px;
         }
         footer p {
             color: #AAAAAA;
@@ -336,6 +324,20 @@
            RESPONSIVE (MOBILE & TABLETTE)
            ========================================= */
         @media (max-width: 900px) {
+            
+            footer {
+                padding: 30px 15px; 
+            }
+            footer p {
+                font-size: 0.45rem; 
+                line-height: 1.5;
+                margin-bottom: 8px;
+            }
+            footer a {
+                font-size: 0.85rem;
+                word-break: break-all; 
+            }
+
             .menu-toggle {
                 display: flex;
             }
@@ -377,8 +379,9 @@
                 height: 55px;
             }
 
+            /* Réduction supplémentaire sur mobile */
             .page-header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             /* Ajustements Mobile Contact */
@@ -391,15 +394,6 @@
             }
             .contact-form-container h2, .contact-info-container h2 {
                 font-size: 1.8rem;
-            }
-            
-            /* Ajustement du bouton flottant sur mobile */
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 30px;
             }
         }
     </style>
@@ -420,16 +414,17 @@
             </div>
 
             <div class="nav-links" id="nav-links">
-                <a href="catalogue.html">Notre Catalogue</a>
+                <a href="index.html">Accueil</a>
+                <a href="catalogue.html">Matériels</a>
                 <a href="a-propos.html">À Propos</a>
-                <a href="contact.html" style="color: var(--orange);">Contact</a> <!-- Lien actif -->
+                <a href="contact.html" style="color: var(--orange);">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- EN-TÊTE DE PAGE -->
     <header class="page-header">
-        <h1>Contactez-<span>nous</span></h1>
+        <h1>Contact <span>MATOCCAZ</span></h1>
         <p>Une question ? Un projet d'achat ? Notre équipe vous répond.</p>
     </header>
 
@@ -499,19 +494,14 @@
                 </div>
             </div>
 
-            <!-- Bouton WhatsApp direct -->
+            <!-- Bouton WhatsApp -->
             <a href="https://wa.me/33648645987?text=Bonjour,%20je%20vous%20contacte%20depuis%20votre%20site%20web." target="_blank" class="btn-whatsapp-direct">
-                <i class="fa-brands fa-whatsapp"></i> Discuter sur WhatsApp
+                💬 Discuter sur WhatsApp
             </a>
 
         </div>
 
     </main>
-
-    <!-- BOUTON WHATSAPP FLOTTANT -->
-    <a href="https://wa.me/33648645987?text=Bonjour,%20je%20souhaite%20avoir%20plus%20d'informations" class="whatsapp-float" target="_blank" aria-label="Contact WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
 
     <!-- FOOTER -->
     <footer>

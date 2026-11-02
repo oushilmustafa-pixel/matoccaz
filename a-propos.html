@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MATOCCAZ - À Propos de Nous</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* --- VARIABLES DE COULEURS --- */
@@ -16,7 +15,6 @@
             --black: #1A1A1A;
             --gray-light: #F4F4F4;
             --gray-text: #555555;
-            --whatsapp: #25D366;
         }
 
         /* --- RESET & BASE --- */
@@ -127,11 +125,11 @@
             background-color: var(--black);
             color: var(--white);
             text-align: center;
-            padding: 30px 20px;
+            padding: 20px 20px;
             border-bottom: 5px solid var(--orange);
         }
         .page-header h1 {
-            font-size: 3rem;
+            font-size: 2rem; /* Aligné exactement avec la taille réduite du catalogue */
             text-transform: uppercase;
             font-weight: 900;
         }
@@ -144,7 +142,7 @@
             font-size: 1.1rem;
         }
 
-        /* --- SECTION HISTOIRE (Photo + Texte) --- */
+        /* --- SECTION HISTOIRE --- */
         .history-section {
             max-width: 1200px;
             margin: 80px auto;
@@ -188,130 +186,9 @@
             line-height: 1.7;
         }
 
-        /* --- SECTION CHIFFRES CLÉS --- */
-        .stats-section {
-            background-color: var(--black);
-            color: var(--white);
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom: 5px solid var(--orange);
-        }
-        
-        .stats-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-
-        .stat-item h3 {
-            font-size: 3.5rem;
-            color: var(--orange);
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 10px;
-            transition: transform 0.3s ease;
-        }
-        
-        /* Effet de pulsation quand l'animation est lancée */
-        .stats-section.animated .stat-item h3 {
-            transform: scale(1.05);
-        }
-
-        .stat-item p {
-            color: #CCCCCC;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        /* --- SECTION PROCESSUS --- */
-        .process-section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .process-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-        }
-        .process-section h2 span {
-            color: var(--orange);
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .process-card {
-            background: var(--gray-light);
-            padding: 40px 30px;
-            border-radius: 8px;
-            border-top: 4px solid var(--orange);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .process-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .process-card i {
-            font-size: 2.5rem;
-            color: var(--orange);
-            margin-bottom: 20px;
-        }
-
-        .process-card h3 {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .process-card p {
-            color: var(--gray-text);
-            font-size: 0.95rem;
-        }
-
-        /* --- SECTION CITATION --- */
-        .quote-section {
-            background-color: var(--gray-light);
-            padding: 60px 20px;
-            text-align: center;
-        }
-        
-        .quote-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .quote-container blockquote {
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--black);
-            font-weight: 600;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .quote-container cite {
-            color: var(--orange);
-            font-weight: 800;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            font-style: normal;
-        }
-
         /* --- SECTION VALEURS --- */
         .values-section {
-            background-color: var(--white);
+            background-color: var(--gray-light);
             padding: 80px 20px;
         }
 
@@ -343,19 +220,17 @@
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             text-align: center;
-            border: 1px solid #eee;
+            border-top: 4px solid var(--orange);
             transition: transform 0.3s ease;
         }
 
         .value-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .value-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
-            color: var(--orange);
         }
 
         .value-card h3 {
@@ -369,7 +244,7 @@
             font-size: 0.95rem;
         }
 
-        /* --- SECTION CTA (Appel à l'action) --- */
+        /* --- SECTION CTA --- */
         .cta-section {
             background-color: var(--black);
             color: var(--white);
@@ -419,118 +294,43 @@
             color: var(--white);
         }
 
-        /* --- BOUTON WHATSAPP FLOTTANT --- */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 32px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #1EBE5D;
-        }
-
-        /* --- FOOTER (Style catalogue) --- */
+        /* --- FOOTER --- */
         footer {
             background-color: var(--black);
             color: var(--white);
-            padding: 50px 20px 20px 20px; 
+            padding: 40px 20px;
+            text-align: center;
             border-top: 5px solid var(--orange);
         }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 20px; 
+        footer p {
+            color: #AAAAAA;
+            margin-bottom: 10px;
         }
-
-        .footer-col h3 {
+        footer a {
             color: var(--orange);
-            font-size: 1.2rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        .footer-links, .footer-contact {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-links li, .footer-contact li {
-            height: 35px; 
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-            font-size: 1rem;
-            color: #AAAAAA;
-        }
-
-        .footer-links a, .footer-contact a {
-            color: #AAAAAA;
             text-decoration: none;
-            transition: color 0.3s;
-        }
-        .footer-links a:hover, .footer-contact a:hover {
-            color: var(--white);
-        }
-
-        .footer-contact li.address {
-            height: auto;
-            align-items: flex-start;
-            line-height: 1.5;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 40px;
-        }
-        .footer-legal a {
-            color: #777;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .footer-legal a:hover {
-            color: var(--white);
+            font-weight: bold;
         }
 
         /* =========================================
            RESPONSIVE (MOBILE & TABLETTE)
            ========================================= */
         @media (max-width: 900px) {
+            
+            /* Ajustements du footer alignés avec le catalogue */
+            footer {
+                padding: 30px 15px; 
+            }
+            footer p {
+                font-size: 0.45rem; 
+                line-height: 1.5;
+                margin-bottom: 8px;
+            }
+            footer a {
+                font-size: 0.85rem;
+                word-break: break-all; 
+            }
+            
             .menu-toggle {
                 display: flex;
             }
@@ -585,58 +385,11 @@
             .history-text h2 {
                 font-size: 2rem;
             }
-            
-            .stat-item h3 {
-                font-size: 2.5rem;
-            }
-            
-            .quote-container blockquote {
-                font-size: 1.2rem;
-            }
-
-            .values-section, .process-section {
+            .values-section {
                 padding: 60px 20px;
             }
             .cta-section h2 {
                 font-size: 2rem;
-            }
-
-            /* Ajustement du bouton flottant sur mobile */
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 30px;
-            }
-
-            /* --- FOOTER MOBILE --- */
-            .footer-container {
-                gap: 15px;
-                margin-bottom: 20px;
-            }
-
-            .footer-col h3 {
-                font-size: 0.95rem;
-                margin-bottom: 15px;
-            }
-
-            .footer-links li, .footer-contact li {
-                font-size: 0.8rem;
-                height: 30px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center; 
-                gap: 15px;
-            }
-
-            .footer-legal {
-                flex-direction: row;
-                justify-content: center;
-                gap: 20px;
-                width: 100%;
             }
         }
     </style>
@@ -657,7 +410,8 @@
             </div>
 
             <div class="nav-links" id="nav-links">
-                <a href="catalogue.html">Notre Catalogue</a>
+                <a href="index.html">Accueil</a>
+                <a href="catalogue.html">Matériels</a>
                 <a href="a-propos.html" style="color: var(--orange);">À Propos</a> <!-- Lien actif -->
                 <a href="contact.html">Contact</a>
             </div>
@@ -666,8 +420,8 @@
 
     <!-- EN-TÊTE DE PAGE -->
     <header class="page-header">
-        <h1>L'histoire de <span>MATOCCAZ</span></h1>
-        <p>Découvrez l'humain et l'expertise derrière vos machines.</p>
+        <h1>À Propos de <span>MATOCCAZ</span></h1>
+        <p>Découvrez l'histoire et les valeurs de votre partenaire BTP.</p>
     </header>
 
     <!-- SECTION HISTOIRE -->
@@ -676,68 +430,10 @@
             <img src="https://i.ibb.co/XxhprwQz/unnamed-1.webp" alt="L'équipe MATOCCAZ">
         </div>
         <div class="history-text">
-            <h2>Notre <span>Parcours</span></h2>
-            <p>Tout commence en 2007 au Maroc avec la création d'Azimabro par <strong>Mohamed Oumanni</strong>. Porté par une passion pour les engins et le commerce international, il décide d'implanter une seconde société en France en 2012 : <strong>MATOCCAZ</strong>, basée à Chasseneuil-du-Poitou.</p>
-            <p>Aujourd'hui, c'est une équipe soudée de 3 passionnés qui fait tourner la boutique. De la recherche de la machine à sa révision, en passant par l'exportation, nous gérons tout en interne.</p>
-            <p>Notre positionnement est clair : proposer du matériel d'occasion de qualité, acheté auprès de grands groupes (Colas, Vinci...) et révisé avec soin avant de partir vers sa nouvelle vie à l'international.</p>
-        </div>
-    </section>
-
-    <!-- SECTION CHIFFRES CLÉS (Animation au scroll) -->
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <h3 id="stat-1">+0</h3>
-                <p>Années d'expertise</p>
-            </div>
-            <div class="stat-item">
-                <h3 id="stat-2">+ 0k</h3>
-                <p>Machines exportées</p>
-            </div>
-            <div class="stat-item">
-                <h3 id="stat-3">0M€</h3>
-                <p>Chiffre d'affaires</p>
-            </div>
-            <div class="stat-item">
-                <h3>Top</h3>
-                <p>Export de la Vienne</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION PROCESSUS -->
-    <section class="process-section">
-        <h2>Notre <span>Savoir-Faire</span></h2>
-        <div class="process-grid">
-            
-            <div class="process-card">
-                <i class="fa-solid fa-handshake"></i>
-                <h3>Sélection rigoureuse</h3>
-                <p>Nous achetons nos machines auprès de grands groupes de BTP qui renouvellent leur flotte. Chaque engin possède un historique clair et vérifié.</p>
-            </div>
-
-            <div class="process-card">
-                <i class="fa-solid fa-wrench"></i>
-                <h3>Révision maison</h3>
-                <p>Alexis, notre mécanicien, teste les organes vitaux de chaque machine. Nous remettons en état ce qui doit l'être, sans jamais cacher les défauts aux clients.</p>
-            </div>
-
-            <div class="process-card">
-                <i class="fa-solid fa-ship"></i>
-                <h3>Export dans le monde</h3>
-                <p>De Casablanca à l'Ukraine en passant par le Sénégal ou le Vietnam, nous gérons toute la logistique (transport, douanes) pour une livraison sans stress.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION CITATION -->
-    <section class="quote-section">
-        <div class="quote-container">
-            <blockquote>
-                "Avec une bonne expertise, on sait maintenant quelle entreprise peut acheter tel ou tel engin. J'aime trouver des solutions pour les gens. Mais on ne cache rien aux clients, si on trouve des défauts, on leur dit."
-            </blockquote>
-            <cite>— Mohamed Oumanni, Gérant de MATOCCAZ</cite>
+            <h2>Notre <span>Histoire</span></h2>
+            <p>Fondée il y a plus de 12 ans, <strong>MATOCCAZ</strong> est née d'une passion pour les engins de chantier et d'une volonté farouche d'accompagner les professionnels du BTP dans leurs projets.</p>
+            <p>Au fil des années, nous avons bâti une expertise solide dans l'achat et la vente de matériels d'occasion. Nous connaissons la valeur d'une machine, son historique, et l'importance d'un matériel fiable sur un chantier.</p>
+            <p>Aujourd'hui, notre réputation n'est plus à faire. Nous sommes fiers de livrer nos machines aux quatre coins du monde, en Europe, en Afrique et au Moyen-Orient, tout en garantissant une logistique sans faille et des transactions sécurisées.</p>
         </div>
     </section>
 
@@ -748,75 +444,42 @@
             <div class="values-grid">
                 
                 <div class="value-card">
-                    <div class="value-icon"><i class="fa-solid fa-eye"></i></div>
-                    <h3>Transparence</h3>
-                    <p>Nous vous fournissons un rapport détaillé de l'état de chaque machine. Pas de mauvaise surprise, juste un achat en toute confiance.</p>
+                    <div class="value-icon">🤝</div>
+                    <h3>Confiance</h3>
+                    <p>La transparence est au cœur de nos échanges. Nous vous fournissons toutes les informations nécessaires pour que vous achetiez en toute sérénité.</p>
                 </div>
 
                 <div class="value-card">
-                    <div class="value-icon"><i class="fa-solid fa-globe"></i></div>
-                    <h3>Expertise</h3>
-                    <p>Maîtrisant 5 langues (français, anglais, espagnol, arabe, berbère) et les formalités douanières, nous exportons partout, sans stress pour vous.</p>
+                    <div class="value-icon">🌍</div>
+                    <h3>Expertise Internationale</h3>
+                    <p>Maîtrisant les formalités douanières et le transport, nous exportons nos matériels partout dans le monde, sans stress pour vous.</p>
                 </div>
 
                 <div class="value-card">
-                    <div class="value-icon"><i class="fa-solid fa-check-double"></i></div>
+                    <div class="value-icon">⚙️</div>
                     <h3>Qualité</h3>
-                    <p>Nous ne vendons que du matériel en lequel nous croyons. Chaque machine est inspectée et révisée avant son grand départ.</p>
+                    <p>Chaque machine vendue est rigoureusement sélectionnée et inspectée. Nous ne proposons que du matériel en lequel nous croyons.</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- SECTION CTA (Appel à l'action) -->
+    <!-- SECTION CTA -->
     <section class="cta-section">
         <h2>Prêt à travailler avec nous ?</h2>
-        <p>Que vous cherchiez une machine spécifique, un lot complet ou que vous ayez un projet d'export, notre équipe est là pour vous aider.</p>
+        <p>Que vous cherchiez une machine spécifique ou que vous ayez un projet d'export, notre équipe est là pour vous aider.</p>
         <div class="cta-buttons">
             <a href="catalogue.html" class="btn">Voir le catalogue</a>
             <a href="contact.html" class="btn-white">Nous contacter</a>
         </div>
     </section>
 
-    <!-- BOUTON WHATSAPP FLOTTANT -->
-    <a href="https://wa.me/33648645987?text=Bonjour,%20je%20souhaite%20avoir%20plus%20d'informations" class="whatsapp-float" target="_blank" aria-label="Contact WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- FOOTER (Style catalogue) -->
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-container">
-            <!-- Colonne 1 : Navigation -->
-            <div class="footer-col">
-                <h3>NAVIGATION</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="catalogue.html">Notre Catalogue</a></li>
-                    <li><a href="a-propos.html">À Propos</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Colonne 2 : Contact -->
-            <div class="footer-col">
-                <h3>CONTACT</h3>
-                <ul class="footer-contact">
-                    <li class="address">31 Avenue des Temps Modernes<br>86360 CHASSENEUIL DU POITOU</li>
-                    <li><a href="tel:+33648645987">+33 6 48 64 59 87</a></li>
-                    <li><a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Bas du footer -->
-        <div class="footer-bottom">
-            <p>&copy; 2026 MATOCCAZ. Tous droits réservés.</p>
-            <div class="footer-legal">
-                <a href="#">Mentions légales</a>
-                <a href="#">Politique de confidentialité</a>
-            </div>
-        </div>
+        <p><strong>MATOCCAZ</strong> - 31 Avenue des Temps Modernes, 86360 CHASSENEUIL DU POITOU</p>
+        <p>Téléphone : +33 5 49 13 39 12 | Email : <a href="mailto:sales@matoccaz.com">sales@matoccaz.com</a></p>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 MATOCCAZ. Tous droits réservés.</p>
     </footer>
 
     <!-- SCRIPT MENU MOBILE -->
@@ -837,52 +500,6 @@
                 navLinks.classList.remove('active');
             });
         });
-    </script>
-
-    <!-- SCRIPT ANIMATION CHIFFRES AU SCROLL -->
-    <script>
-        // Fonction pour animer un chiffre de 0 jusqu'à sa cible
-        function animateValue(id, start, end, duration, prefix, suffix, isDecimal) {
-            const obj = document.getElementById(id);
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                
-                let current = progress * (end - start) + start;
-                let displayValue = isDecimal ? current.toFixed(1) : Math.floor(current);
-                
-                obj.innerHTML = prefix + displayValue + suffix;
-                
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                } else {
-                    obj.innerHTML = prefix + end + suffix;
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        // Détecter quand la section des chiffres est visible à l'écran
-        const statsSection = document.querySelector('.stats-section');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // On lance l'animation uniquement la première fois
-                    if (!statsSection.classList.contains('animated')) {
-                        statsSection.classList.add('animated');
-                        
-                        // Paramètres : id, début, fin, durée(ms), préfixe, suffixe, décimal(bool)
-                        animateValue("stat-1", 0, 12, 2000, "+", "", false);
-                        animateValue("stat-2", 0, 100, 2000, "+ ", "k", false);
-                        animateValue("stat-3", 0, 6.4, 2000, "", "M€", true);
-                    }
-                }
-            });
-        }, { threshold: 0.3 }); // Se déclenche quand 30% de la section est visible
-
-        observer.observe(statsSection);
     </script>
 
 </body>
