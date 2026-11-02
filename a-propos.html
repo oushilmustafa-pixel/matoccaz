@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MATOCCAZ - À Propos de Nous</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Rosario:ital,wght@1,700&family=Roboto+Mono:wght@700&family=Proza+Libre:wght@400&display=swap" rel="stylesheet">
     
     <style>
         /* --- VARIABLES DE COULEURS --- */
@@ -129,7 +129,7 @@
             border-bottom: 5px solid var(--orange);
         }
         .page-header h1 {
-            font-size: 2rem; /* Aligné exactement avec la taille réduite du catalogue */
+            font-size: 2rem;
             text-transform: uppercase;
             font-weight: 900;
         }
@@ -184,6 +184,198 @@
             margin-bottom: 20px;
             font-size: 1.05rem;
             line-height: 1.7;
+        }
+
+        /* ============================================================
+           SECTION TIMELINE — fond sombre + accent ORANGE
+           ============================================================ */
+        .timeline-section {
+            background-color: #121212;
+            color: #ededed;
+            padding: 80px 20px;
+            border-top: 5px solid var(--orange);
+            border-bottom: 5px solid var(--orange);
+        }
+
+        .timeline-section__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            font-weight: 900;
+            color: #ededed;
+        }
+
+        .timeline-section h2 span {
+            color: var(--orange);
+        }
+
+        /* --- Timeline --- */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .timeline article {
+            --size: 0.625em;
+            --highlight: var(--orange);
+
+            --marker: radial-gradient(
+                circle closest-side,
+                var(--highlight) calc(100% - 1px),
+                transparent
+              )
+              0 0 / 100% var(--size);
+
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25em;
+
+            background:
+                var(--marker),
+                linear-gradient(var(--highlight) 0 0) 50% / 2px;
+            background-repeat: no-repeat;
+            background-position:
+                0 0,
+                1.1em 0;
+
+            padding-left: 3.5em;
+            margin-top: -1px;
+        }
+
+        .timeline article:first-child {
+            --marker: linear-gradient(var(--highlight) 0 0) 50% 0 /
+                var(--size) calc(0.5 * var(--size));
+        }
+
+        .timeline article:not(:last-child) {
+            padding-bottom: 2.5em;
+        }
+
+        .timeline article > * {
+            border-radius: var(--size);
+        }
+
+        .timeline article img {
+            order: -1;
+            justify-self: start;
+            width: min(100%, 16em);
+        }
+
+        /* Carte de contenu (version glass sombre) */
+        .timeline__content {
+            padding: 1.75em;
+            background: rgba(255 255 255 / 0.07);
+            border: 1px solid rgba(255 255 255 / 0.06);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .timeline h1 {
+            margin: 0 0 0.5em;
+            color: var(--orange);
+            font: italic 700 1.375em/1 'Rosario', system-ui, sans-serif;
+            text-transform: capitalize;
+        }
+
+        .timeline time {
+            display: block;
+            color: #fff;
+            font: 700 2.25em/1.25 'Roboto Mono', ui-monospace, monospace;
+        }
+
+        .timeline hr {
+            opacity: 0.3;
+            border: none;
+            border-top: 1px solid currentColor;
+            margin: 1em 0;
+        }
+
+        .timeline p {
+            margin: 0;
+            padding-top: 0.5em;
+            font: 400 1em/1.6 'Proza Libre', system-ui, sans-serif;
+            color: #d8d8d8;
+        }
+
+        .timeline img {
+            box-sizing: border-box;
+            border: solid 2px var(--highlight, var(--orange));
+            width: min(100%, 16em);
+            aspect-ratio: 1.3;
+            object-fit: cover;
+            border-radius: var(--size, 0.625em);
+        }
+
+        /* ============================================================
+           DESKTOP (≥ 900px) : TIMELINE HORIZONTALE
+           ============================================================ */
+        @media (min-width: 900px) {
+            .timeline {
+                flex-direction: row;
+                align-items: flex-start;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                padding: 1em 0 2em;
+                scrollbar-color: var(--orange) #121212;
+                scrollbar-width: thin;
+            }
+
+            .timeline::-webkit-scrollbar {
+                height: 6px;
+            }
+            .timeline::-webkit-scrollbar-track {
+                background: rgba(255,255,255,0.05);
+                border-radius: 3px;
+            }
+            .timeline::-webkit-scrollbar-thumb {
+                background: var(--orange);
+                border-radius: 3px;
+            }
+
+            .timeline article {
+                background-position:
+                    0 0,
+                    0 50%;
+                background-size:
+                    100% var(--size),
+                    100% 2px;
+
+                flex: 0 0 auto;
+                width: 24em;
+                scroll-snap-align: start;
+
+                padding-left: 0;
+                padding-top: 3em;
+                padding-bottom: 0;
+                padding-right: 2em;
+                margin-top: 0;
+                margin-left: -1px;
+            }
+
+            .timeline article:first-child {
+                --marker: linear-gradient(var(--highlight) 0 0) 0 0 /
+                    calc(0.5 * var(--size)) var(--size);
+            }
+
+            .timeline article:not(:last-child) {
+                padding-bottom: 0;
+                padding-right: 2em;
+            }
+
+            .timeline article img {
+                order: 0;
+                justify-self: start;
+                width: 100%;
+                max-width: none;
+            }
         }
 
         /* --- SECTION VALEURS --- */
@@ -317,7 +509,6 @@
            ========================================= */
         @media (max-width: 900px) {
             
-            /* Ajustements du footer alignés avec le catalogue */
             footer {
                 padding: 30px 15px; 
             }
@@ -376,7 +567,6 @@
                 font-size: 2rem;
             }
 
-            /* Ajustements Mobile À Propos */
             .history-section {
                 flex-direction: column;
                 margin: 40px auto;
@@ -385,6 +575,25 @@
             .history-text h2 {
                 font-size: 2rem;
             }
+
+            /* Timeline mobile */
+            .timeline-section {
+                padding: 60px 15px;
+            }
+            .timeline-section h2 {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            .timeline article {
+                padding-left: 2.75em;
+            }
+            .timeline__content {
+                padding: 1.25em;
+            }
+            .timeline time {
+                font-size: 1.75em;
+            }
+
             .values-section {
                 padding: 60px 20px;
             }
@@ -412,7 +621,7 @@
             <div class="nav-links" id="nav-links">
                 <a href="index.html">Accueil</a>
                 <a href="catalogue.html">Matériels</a>
-                <a href="a-propos.html" style="color: var(--orange);">À Propos</a> <!-- Lien actif -->
+                <a href="a-propos.html" style="color: var(--orange);">À Propos</a>
                 <a href="contact.html">Contact</a>
             </div>
         </div>
@@ -434,6 +643,215 @@
             <p>Fondée il y a plus de 12 ans, <strong>MATOCCAZ</strong> est née d'une passion pour les engins de chantier et d'une volonté farouche d'accompagner les professionnels du BTP dans leurs projets.</p>
             <p>Au fil des années, nous avons bâti une expertise solide dans l'achat et la vente de matériels d'occasion. Nous connaissons la valeur d'une machine, son historique, et l'importance d'un matériel fiable sur un chantier.</p>
             <p>Aujourd'hui, notre réputation n'est plus à faire. Nous sommes fiers de livrer nos machines aux quatre coins du monde, en Europe, en Afrique et au Moyen-Orient, tout en garantissant une logistique sans faille et des transactions sécurisées.</p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION TIMELINE — fond sombre + accent ORANGE
+         ============================================================ -->
+    <section class="timeline-section">
+        <div class="timeline-section__inner">
+            <h2>Notre <span>Parcours</span></h2>
+
+            <div class="timeline" aria-label="Notre parcours, étape par étape">
+                <article>
+                    <div class="timeline__content">
+                        <h1>Les débuts</h1>
+                        <time datetime="2004">2004</time>
+                        <hr />
+                        <p>
+                            Création de MATOCCAZ et premières ventes de matériels
+                            d'occasion en France. Une aventure portée par la
+                            passion des engins de chantier.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600"
+                        alt="Engin de chantier"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Premières exportations</h1>
+                        <time datetime="2006">2006</time>
+                        <hr />
+                        <p>
+                            Ouverture vers l'international : nos premières
+                            machines partent vers l'Afrique. Nous apprenons
+                            les formalités douanières et la logistique.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600"
+                        alt="Porte-conteneurs"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Développement en Europe</h1>
+                        <time datetime="2008">2008</time>
+                        <hr />
+                        <p>
+                            Nouveaux partenariats en Europe. Notre réseau
+                            s'étend et notre expertise sur les machines
+                            d'occasion est reconnue.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600"
+                        alt="Équipe de travail"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Expansion Moyen-Orient</h1>
+                        <time datetime="2010">2010</time>
+                        <hr />
+                        <p>
+                            Nos premières livraisons au Moyen-Orient ouvrent
+                            de nouvelles perspectives. La confiance de nos
+                            clients grandit.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600"
+                        alt="Engin de chantier"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Logistique renforcée</h1>
+                        <time datetime="2012">2012</time>
+                        <hr />
+                        <p>
+                            Mise en place d'un processus logistique complet
+                            pour sécuriser chaque transaction, de l'achat
+                            à la livraison.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600"
+                        alt="Logistique et transport"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Croissance internationale</h1>
+                        <time datetime="2014">2014</time>
+                        <hr />
+                        <p>
+                            Notre réputation n'est plus à faire. Les
+                            professionnels du BTP nous font confiance pour
+                            leurs projets partout dans le monde.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600"
+                        alt="Équipe internationale"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Digitalisation</h1>
+                        <time datetime="2016">2016</time>
+                        <hr />
+                        <p>
+                            Lancement de notre catalogue en ligne. Nos
+                            clients peuvent désormais consulter nos
+                            machines directement depuis chez eux.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600"
+                        alt="Ordinateur portable"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Nouveaux marchés</h1>
+                        <time datetime="2018">2018</time>
+                        <hr />
+                        <p>
+                            Ouverture de nouveaux marchés en Afrique de
+                            l'Ouest. Notre réseau de partenaires s'étend
+                            et se professionnalise.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600"
+                        alt="Engin de chantier"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Expertise reconnue</h1>
+                        <time datetime="2020">2020</time>
+                        <hr />
+                        <p>
+                            Malgré un contexte mondial difficile, MATOCCAZ
+                            maintient son activité et renforce sa position
+                            de partenaire de confiance.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600"
+                        alt="Porte-conteneurs"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Une nouvelle ère</h1>
+                        <time datetime="2022">2022</time>
+                        <hr />
+                        <p>
+                            Refonte complète de notre image de marque et de
+                            nos services pour mieux accompagner les
+                            professionnels du BTP.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600"
+                        alt="Équipe de travail"
+                        loading="lazy"
+                    />
+                </article>
+
+                <article>
+                    <div class="timeline__content">
+                        <h1>Aujourd'hui</h1>
+                        <time datetime="2024">2024</time>
+                        <hr />
+                        <p>
+                            Plus de 12 ans d'expérience, des livraisons sur
+                            trois continents, et une équipe toujours aussi
+                            passionnée par les engins de chantier.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600"
+                        alt="Engin de chantier"
+                        loading="lazy"
+                    />
+                </article>
+            </div>
         </div>
     </section>
 
@@ -492,7 +910,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Fermer le menu mobile quand on clique sur un lien
         const navLinksMobile = document.querySelectorAll('.nav-links a');
         navLinksMobile.forEach(link => {
             link.addEventListener('click', () => {
